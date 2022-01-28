@@ -38,7 +38,7 @@ public class HsJobConfiguration {
 		if(Objects.isNull(appName)||"".equals(appName)){
 			appName = System.getProperty("spring.application.name");
 		}
-		xxlJobSpringExecutor.setAppname(appName);
+		xxlJobSpringExecutor.setAppName(appName);
 		xxlJobSpringExecutor.setAddress(ossProperties.getAddress());
 		String ip = ossProperties.getIp();
 		if(Objects.isNull(ip)||"".equals(ip)){
