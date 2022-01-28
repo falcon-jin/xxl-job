@@ -62,11 +62,11 @@
 	<distributionManagement>
 		<repository>
 			<id>rdc-releases</id>
-			<url>https://packages.aliyun.com/maven/repository/2179496-release-DbnZ1Z/</url>
+			<url>https://packages.aliyun.com/maven/repository/2183109-release-2dynHK/</url>
 		</repository>
 		<snapshotRepository>
 			<id>rdc-snapshots</id>
-			<url>https://packages.aliyun.com/maven/repository/2179496-snapshot-YCLogG/</url>
+			<url>https://packages.aliyun.com/maven/repository/2183109-snapshot-jHqyyp/</url>
 		</snapshotRepository>
 	</distributionManagement>
 	<pluginRepositories>
