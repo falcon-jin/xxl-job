@@ -116,16 +116,16 @@
 				<groupId>com.spotify</groupId>
 				<artifactId>dockerfile-maven-plugin</artifactId>
 				<version>1.4.13</version>
-				<executions>
+				<!--<executions>
 					<execution>
 						<id>default</id>
 						<goals>
-							<!--mvn clean package -Ddockerfile.skip -->
+							&lt;!&ndash;mvn clean package -Ddockerfile.skip &ndash;&gt;
 							<goal>build</goal>
 							<goal>push</goal>
 						</goals>
 					</execution>
-				</executions>
+				</executions>-->
 				<configuration>
 					<tag>${project.version}</tag>
 					<tag>latest</tag>
