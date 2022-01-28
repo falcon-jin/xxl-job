@@ -20,7 +20,7 @@ import java.util.Map;
 
 
 /**
- * xxl-job executor (for spring)
+ * springboot执行器
  *
  * @author falcon 2018-11-01 09:24:52
  */
@@ -28,18 +28,18 @@ public class HsJobSpringExecutor extends HsJobExecutor implements ApplicationCon
     private static final Logger logger = LoggerFactory.getLogger(HsJobSpringExecutor.class);
 
 
-    // start
+    // 在单例对象加载完毕后执行
     @Override
     public void afterSingletonsInstantiated() {
 
 
-        // init JobHandler Repository (for method)
+        // 初始化 JobHandler 存储库（用于方法）
         initJobHandlerMethodRepository(applicationContext);
 
-        // refresh GlueFactory
+        // 刷新 GlueFactory
         GlueFactory.refreshInstance(1);
 
-        // super start
+        // 启动父类
         try {
             super.start();
         } catch (Exception e) {
@@ -47,7 +47,7 @@ public class HsJobSpringExecutor extends HsJobExecutor implements ApplicationCon
         }
     }
 
-    // destroy
+    // 销毁
     @Override
     public void destroy() {
         super.destroy();
@@ -59,7 +59,7 @@ public class HsJobSpringExecutor extends HsJobExecutor implements ApplicationCon
         if (applicationContext == null) {
             return;
         }
-        // init job handler from method
+        // 初始化定时任务
         String[] beanDefinitionNames = applicationContext.getBeanNamesForType(HsJobHandler.class, false, true);
         Arrays.stream(beanDefinitionNames).parallel().forEach(beanDefinitionName->{
             Object bean = applicationContext.getBean(beanDefinitionName);
@@ -75,7 +75,7 @@ public class HsJobSpringExecutor extends HsJobExecutor implements ApplicationCon
                 for (Map.Entry<Method, HsJob> methodXxlJobEntry : annotatedMethods.entrySet()) {
                     Method executeMethod = methodXxlJobEntry.getKey();
                     HsJob hsJob = methodXxlJobEntry.getValue();
-                    // regist
+                    // 注册定时任务处理方法
                     registJobHandler(hsJob, bean, executeMethod);
                 }
             }

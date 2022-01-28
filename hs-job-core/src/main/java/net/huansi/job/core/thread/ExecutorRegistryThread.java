@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 注册执行器
  * Created by falcon on 17/3/2.
  */
 public class ExecutorRegistryThread {
@@ -37,7 +38,7 @@ public class ExecutorRegistryThread {
         //向控制端注册服务
         registryThread = new Thread(() -> {
 
-            // registry
+            // 注册
             while (!toStop) {
                 try {
                     RegistryParam registryParam = new RegistryParam(RegistryConfig.RegistType.EXECUTOR.name(), appname, address);
@@ -65,6 +66,7 @@ public class ExecutorRegistryThread {
                 //发送心跳
                 try {
                     if (!toStop) {
+                        //默认30秒发送一次心跳
                         TimeUnit.SECONDS.sleep(RegistryConfig.BEAT_TIMEOUT);
                     }
                 } catch (InterruptedException e) {
@@ -74,7 +76,7 @@ public class ExecutorRegistryThread {
                 }
             }
 
-            // registry remove
+            // 移除执行器
             try {
                 RegistryParam registryParam = new RegistryParam(RegistryConfig.RegistType.EXECUTOR.name(), appname, address);
                 for (AdminBiz adminBiz: HsJobExecutor.getAdminBizList()) {
@@ -111,7 +113,7 @@ public class ExecutorRegistryThread {
     public void toStop() {
         toStop = true;
 
-        // interrupt and wait
+        //中断线程 关闭执行器
         if (registryThread != null) {
             registryThread.interrupt();
             try {

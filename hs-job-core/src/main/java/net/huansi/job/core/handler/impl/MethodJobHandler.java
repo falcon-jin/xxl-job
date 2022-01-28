@@ -5,6 +5,7 @@ import net.huansi.job.core.handler.IJobHandler;
 import java.lang.reflect.Method;
 
 /**
+ * 使用@XxlJob注解
  * @author falcon 2019-12-11 21:12:18
  */
 public class MethodJobHandler extends IJobHandler {
@@ -26,6 +27,7 @@ public class MethodJobHandler extends IJobHandler {
     public void execute() throws Exception {
         Class<?>[] paramTypes = method.getParameterTypes();
         if (paramTypes.length > 0) {
+            //方法参数不能是原始类型
             method.invoke(target, new Object[paramTypes.length]);       // 方法参数不能是原始类型
         } else {
             method.invoke(target);

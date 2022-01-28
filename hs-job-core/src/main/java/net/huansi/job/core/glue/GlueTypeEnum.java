@@ -1,6 +1,7 @@
 package net.huansi.job.core.glue;
 
 /**
+ * 运行模式
  * Created by falcon on 17/4/26.
  */
 public enum GlueTypeEnum {

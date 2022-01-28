@@ -23,19 +23,28 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
+ * 执行器
  * Created by falcon on 2016/3/2 21:14.
  */
 public class HsJobExecutor {
     private static final Logger logger = LoggerFactory.getLogger(HsJobExecutor.class);
 
     // ---------------------- param ----------------------
+    //调度中心地址
     private String adminAddresses;
+    //访问令牌
     private String accessToken;
-    private String appname;
+    //执行器名称
+    private String appName;
+    //执行器地址 默认使用address注册 ，如果地址为空使用 ip:port 注册
     private String address;
+    //执行器ip
     private String ip;
+    //执行器端口
     private int port;
+    //日志路径
     private String logPath;
+    //日志保留时间
     private int logRetentionDays;
 
     public void setAdminAddresses(String adminAddresses) {
@@ -44,8 +53,8 @@ public class HsJobExecutor {
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
-    public void setAppname(String appname) {
-        this.appname = appname;
+    public void setAppName(String appName) {
+        this.appName = appName;
     }
     public void setAddress(String address) {
         this.address = address;
@@ -64,34 +73,35 @@ public class HsJobExecutor {
     }
 
 
-    // ---------------------- start + stop ----------------------
+    // ---------------------- 执行器开始/关闭 ----------------------
     public void start() throws Exception {
 
-        // init logpath
+        // 初始化日志路径
         HsJobFileAppender.initLogPath(logPath);
 
-        // init invoker, admin-client
+        //初始化调度中心，与调度中心建立连接
         initAdminBizList(adminAddresses, accessToken);
 
 
-        // init JobLogFileCleanThread
+        // 初始化 任务日志文件清理线程
         JobLogFileCleanThread.getInstance().start(logRetentionDays);
 
-        // init TriggerCallbackThread
+        // 初始化任务执行结果返回给调度中心线程
         TriggerCallbackThread.getInstance().start();
 
-        // init executor-server
-        initEmbedServer(address, ip, port, appname, accessToken);
+        // 初始化执行器
+        initEmbedServer(address, ip, port, appName, accessToken);
     }
+    //销毁执行器
     public void destroy(){
-        // destroy executor-server
+        // 停止执行器服务
         stopEmbedServer();
 
-        // destroy jobThreadRepository
+        // 销毁任务线程
         if (jobThreadRepository.size() > 0) {
             for (Map.Entry<Integer, JobThread> item: jobThreadRepository.entrySet()) {
                 JobThread oldJobThread = removeJobThread(item.getKey(), "web container destroy and kill the job.");
-                // wait for job thread push result to callback queue
+                // 等待作业线程推送结果到回调队列
                 if (oldJobThread != null) {
                     try {
                         oldJobThread.join();
@@ -105,22 +115,24 @@ public class HsJobExecutor {
         jobHandlerRepository.clear();
 
 
-        // destroy JobLogFileCleanThread
+        // 销毁 任务日志文件清理线程
         JobLogFileCleanThread.getInstance().toStop();
 
-        // destroy TriggerCallbackThread
+        // 销毁任务执行结果返回给调度中心线程
         TriggerCallbackThread.getInstance().toStop();
 
     }
 
 
-    // ---------------------- admin-client (rpc invoker) ----------------------
+    // ---------------------- 调度中心-执行器 通过tpc调度 ----------------------
+    //调度中心
     private static List<AdminBiz> adminBizList;
+    //初始化调度中心，与调度中心建立连接
     private void initAdminBizList(String adminAddresses, String accessToken) throws Exception {
         if (adminAddresses!=null && adminAddresses.trim().length()>0) {
+            //配置了集群服务
             for (String address: adminAddresses.trim().split(",")) {
                 if (address!=null && address.trim().length()>0) {
-
                     AdminBiz adminBiz = new AdminBizClient(address.trim(), accessToken);
 
                     if (adminBizList == null) {
@@ -131,22 +143,25 @@ public class HsJobExecutor {
             }
         }
     }
+    //获取调度中心列表
     public static List<AdminBiz> getAdminBizList(){
         return adminBizList;
     }
 
-    // ---------------------- executor-server (rpc provider) ----------------------
+    // ---------------------- 执行器客户端操作 ----------------------
+    //执行器服务
     private EmbedServer embedServer = null;
-
+    //初始化执行器
     private void initEmbedServer(String address, String ip, int port, String appname, String accessToken) throws Exception {
 
-        // fill ip port
+        // 查找端口
         port = port>0?port: NetUtil.findAvailablePort(9999);
         ip = (ip!=null&&ip.trim().length()>0)?ip: IpUtil.getIp();
 
-        // generate address
+        //执行器地址
         if (address==null || address.trim().length()==0) {
-            String ip_port_address = IpUtil.getIpPort(ip, port);   // registry-address：default use address to registry , otherwise use ip:port if address is null
+            //配置文件没有配置address 默认使用ip加端口号的方式
+            String ip_port_address = IpUtil.getIpPort(ip, port);
             address = "http://{ip_port}/".replace("{ip_port}", ip_port_address);
         } else {
             String[] split = address.split(":");
@@ -161,18 +176,18 @@ public class HsJobExecutor {
 
         }
 
-        // accessToken
+        // 访问令牌
         if (accessToken==null || accessToken.trim().length()==0) {
             logger.warn(">>>>>>>>>>> xxl-job accessToken is empty. To ensure system security, please set the accessToken.");
         }
 
-        // start
+        // 启动执行器
         embedServer = new EmbedServer();
         embedServer.start(address, port, appname, accessToken);
     }
-
+    //停止执行器
     private void stopEmbedServer() {
-        // stop provider factory
+        //停止执行器
         if (embedServer != null) {
             try {
                 embedServer.stop();
@@ -183,15 +198,18 @@ public class HsJobExecutor {
     }
 
 
-    // ---------------------- job handler repository ----------------------
+    // ---------------------- 执行器仓库 保存所有任务处理器 ----------------------
     private static ConcurrentMap<String, IJobHandler> jobHandlerRepository = new ConcurrentHashMap<String, IJobHandler>();
+    //通过处理器名称获取处理器
     public static IJobHandler loadJobHandler(String name){
         return jobHandlerRepository.get(name);
     }
+    //注册任务处理器
     public static IJobHandler registJobHandler(String name, IJobHandler jobHandler){
         logger.info(">>>>>>>>>>> xxl-job register jobhandler success, name:{}, jobHandler:{}", name, jobHandler);
         return jobHandlerRepository.put(name, jobHandler);
     }
+    //注册任务处理器
     protected void registJobHandler(HsJob hsJob, Object bean, Method executeMethod){
         if (hsJob == null) {
             return;
@@ -238,8 +256,9 @@ public class HsJobExecutor {
     }
 
 
-    // ---------------------- job thread repository ----------------------
+    // ---------------------- 执行器线程仓库 ----------------------
     private static ConcurrentMap<Integer, JobThread> jobThreadRepository = new ConcurrentHashMap<Integer, JobThread>();
+    //注册任务线程 执行任务
     public static JobThread registJobThread(int jobId, IJobHandler handler, String removeOldReason){
         JobThread newJobThread = new JobThread(jobId, handler);
         newJobThread.start();
@@ -253,6 +272,7 @@ public class HsJobExecutor {
 
         return newJobThread;
     }
+    //移除任务线程 任务执行结束
     public static JobThread removeJobThread(int jobId, String removeOldReason){
         JobThread oldJobThread = jobThreadRepository.remove(jobId);
         if (oldJobThread != null) {
@@ -263,6 +283,7 @@ public class HsJobExecutor {
         }
         return null;
     }
+    //获取任务执行线程
     public static JobThread loadJobThread(int jobId){
         JobThread jobThread = jobThreadRepository.get(jobId);
         return jobThread;

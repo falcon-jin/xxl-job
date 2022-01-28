@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * glue factory, product class/object by name
+ * 通过名称生产 类对象
  *
  * @author falcon 2016-1-2 20:02:27
  */
@@ -37,7 +37,7 @@ public class GlueFactory {
 	private ConcurrentMap<String, Class<?>> CLASS_CACHE = new ConcurrentHashMap<>();
 
 	/**
-	 * load new instance, prototype
+	 * 获取任务处理对象
 	 *
 	 * @param codeSource
 	 * @return

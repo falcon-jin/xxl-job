@@ -21,7 +21,7 @@ import java.util.concurrent.*;
 
 
 /**
- * handler thread
+ * 处理任务线程
  * @author falcon 2016-1-16 19:52:47
  */
 public class JobThread extends Thread{
@@ -30,13 +30,14 @@ public class JobThread extends Thread{
 	private int jobId;
 	private IJobHandler handler;
 	private LinkedBlockingQueue<TriggerParam> triggerQueue;
-	private Set<Long> triggerLogIdSet;		// avoid repeat trigger for the same TRIGGER_LOG_ID
-
+	// 避免重复触发相同的 TRIGGER_LOG_ID
+	private Set<Long> triggerLogIdSet;
 	private volatile boolean toStop = false;
 	private String stopReason;
-
-    private boolean running = false;    // if running job
-	private int idleTimes = 0;			// idel times
+	// 任务执行状态
+    private boolean running = false;
+	// 失败重试次数
+	private int idleTimes = 0;
 
 
 	public JobThread(int jobId, IJobHandler handler) {
@@ -53,7 +54,7 @@ public class JobThread extends Thread{
 	}
 
     /**
-     * new trigger to queue
+     * 排队的新触发器
      *
      * @param triggerParam
      * @return
@@ -71,7 +72,7 @@ public class JobThread extends Thread{
 	}
 
     /**
-     * kill job thread
+     * 结束任务线程
      *
      * @param stopReason
      */
@@ -103,21 +104,20 @@ public class JobThread extends Thread{
     		logger.error(e.getMessage(), e);
 		}
 
-		// execute
+		// 执行定时任务
 		while(!toStop){
 			running = false;
 			idleTimes++;
 
             TriggerParam triggerParam = null;
             try {
-				// to check toStop signal, we need cycle, so wo cannot use queue.take(), instand of poll(timeout)
+				// 要检查停止信号，我们需要循环，所以我们不能使用 queue.take()，而不是 poll(timeout)
 				triggerParam = triggerQueue.poll(3L, TimeUnit.SECONDS);
 				if (triggerParam!=null) {
 					running = true;
 					idleTimes = 0;
 					triggerLogIdSet.remove(triggerParam.getLogId());
-
-					// log filename, like "logPath/yyyy-MM-dd/9999.log"
+                    // 日志文件名称  "logPath/yyyy-MM-dd/9999.log"
 					String logFileName = HsJobFileAppender.makeLogFileName(new Date(triggerParam.getLogDateTime()), triggerParam.getLogId());
 					HsJobContext hsJobContext = new HsJobContext(
 							triggerParam.getJobId(),
@@ -126,12 +126,12 @@ public class JobThread extends Thread{
 							triggerParam.getBroadcastIndex(),
 							triggerParam.getBroadcastTotal());
 
-					// init job context
+					//初始化任务上下文
 					HsJobContext.setXxlJobContext(hsJobContext);
 
-					// execute
+					// 开始执行任务
 					HsJobHelper.log("<br>----------- xxl-job job execute start -----------<br>----------- Param:" + hsJobContext.getJobParam());
-
+					//是否限制任务执行时间
 					if (triggerParam.getExecutorTimeout() > 0) {
 						// limit timeout
 						Thread futureThread = null;
@@ -162,11 +162,11 @@ public class JobThread extends Thread{
 							futureThread.interrupt();
 						}
 					} else {
-						// just execute
+						// 执行定时任务
 						handler.execute();
 					}
 
-					// valid execute handle data
+					// 无效的执行结果 定时任务执行失败
 					if (HsJobContext.getXxlJobContext().getHandleCode() <= 0) {
 						HsJobHelper.handleFail("job handle result lost.");
 					} else {
@@ -226,7 +226,7 @@ public class JobThread extends Thread{
             }
         }
 
-		// callback trigger request in queue
+		//定时任务停止 销毁定时任务
 		while(triggerQueue !=null && triggerQueue.size()>0){
 			TriggerParam triggerParam = triggerQueue.poll();
 			if (triggerParam!=null) {
@@ -240,7 +240,7 @@ public class JobThread extends Thread{
 			}
 		}
 
-		// destroy
+		// 销毁定时任务
 		try {
 			handler.destroy();
 		} catch (Throwable e) {

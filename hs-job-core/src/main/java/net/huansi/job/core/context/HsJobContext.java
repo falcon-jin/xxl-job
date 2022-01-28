@@ -1,52 +1,55 @@
 package net.huansi.job.core.context;
 
 /**
- * xxl-job context
+ * job上下文
  *
  * @author falcon 2020-05-21
  * [Dear hj]
  */
 public class HsJobContext {
 
+    //响应成功状态码
     public static final int HANDLE_CODE_SUCCESS = 200;
+    //响应失败状态码
     public static final int HANDLE_CODE_FAIL = 500;
+    //响应超时状态码
     public static final int HANDLE_CODE_TIMEOUT = 502;
 
     // ---------------------- base info ----------------------
 
     /**
-     * job id
+     * 任务id
      */
     private final long jobId;
 
     /**
-     * job param
+     * 任务参数
      */
     private final String jobParam;
 
     // ---------------------- for log ----------------------
 
     /**
-     * job log filename
+     * 任务日志文件名称
      */
     private final String jobLogFileName;
 
     // ---------------------- for shard ----------------------
 
     /**
-     * shard index
+     * 分享索引
      */
     private final int shardIndex;
 
     /**
-     * shard total
+     * 分享总数
      */
     private final int shardTotal;
 
     // ---------------------- for handle ----------------------
 
     /**
-     * handleCode：The result status of job execution
+     * 处理代码：作业执行结果状态
      *
      *      200 : success
      *      500 : fail
@@ -56,7 +59,7 @@ public class HsJobContext {
     private int handleCode;
 
     /**
-     * handleMsg：The simple log msg of job execution
+     * 处理结果：作业执行的简单日志消息
      */
     private String handleMsg;
 

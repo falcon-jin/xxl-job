@@ -20,7 +20,7 @@ public class SpringGlueFactory extends GlueFactory {
 
 
     /**
-     * inject action of spring
+     * 注入服务
      * @param instance
      */
     @Override
@@ -35,13 +35,13 @@ public class SpringGlueFactory extends GlueFactory {
 
         Field[] fields = instance.getClass().getDeclaredFields();
         for (Field field : fields) {
+            //静态成员不处理
             if (Modifier.isStatic(field.getModifiers())) {
                 continue;
             }
 
             Object fieldBean = null;
-            // with bean-id, bean could be found by both @Resource and @Autowired, or bean could only be found by @Autowired
-
+            //使用bean-id，bean 可以被@Resource 和@Autowired 找到，或者bean 只能被@Autowired 找到
             if (AnnotationUtils.getAnnotation(field, Resource.class) != null) {
                 try {
                     Resource resource = AnnotationUtils.getAnnotation(field, Resource.class);

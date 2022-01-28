@@ -12,7 +12,7 @@ import java.io.StringWriter;
 import java.util.Date;
 
 /**
- * helper for xxl-job
+ * 工具类
  *
  * @author falcon 2020-11-05
  */
@@ -21,7 +21,7 @@ public class HsJobHelper {
     // ---------------------- base info ----------------------
 
     /**
-     * current JobId
+     * 获取当前任务id
      *
      * @return
      */
@@ -35,7 +35,7 @@ public class HsJobHelper {
     }
 
     /**
-     * current JobParam
+     * 获取当前任务参数
      *
      * @return
      */
@@ -51,7 +51,7 @@ public class HsJobHelper {
     // ---------------------- for log ----------------------
 
     /**
-     * current JobLogFileName
+     * 获取当前任务日志文件名称
      *
      * @return
      */
@@ -67,7 +67,7 @@ public class HsJobHelper {
     // ---------------------- for shard ----------------------
 
     /**
-     * current ShardIndex
+     * 获取当前分享索引
      *
      * @return
      */
@@ -81,7 +81,7 @@ public class HsJobHelper {
     }
 
     /**
-     * current ShardTotal
+     * 获取当前总分享数
      *
      * @return
      */
@@ -99,8 +99,7 @@ public class HsJobHelper {
     private static Logger logger = LoggerFactory.getLogger("xxl-job logger");
 
     /**
-     * append log with pattern
-     *
+     * 用正则模式附加日志
      * @param appendLogPattern  like "aaa {} bbb {} ccc"
      * @param appendLogArguments    like "111, true"
      */
@@ -109,17 +108,12 @@ public class HsJobHelper {
         FormattingTuple ft = MessageFormatter.arrayFormat(appendLogPattern, appendLogArguments);
         String appendLog = ft.getMessage();
 
-        /*appendLog = appendLogPattern;
-        if (appendLogArguments!=null && appendLogArguments.length>0) {
-            appendLog = MessageFormat.format(appendLogPattern, appendLogArguments);
-        }*/
-
         StackTraceElement callInfo = new Throwable().getStackTrace()[1];
         return logDetail(callInfo, appendLog);
     }
 
     /**
-     * append exception stack
+     * 附加异常堆栈
      *
      * @param e
      */
@@ -134,7 +128,7 @@ public class HsJobHelper {
     }
 
     /**
-     * append log
+     * 追加日志
      *
      * @param callInfo
      * @param appendLog
@@ -145,10 +139,6 @@ public class HsJobHelper {
             return false;
         }
 
-        /*// "yyyy-MM-dd HH:mm:ss [ClassName]-[MethodName]-[LineNumber]-[ThreadName] log";
-        StackTraceElement[] stackTraceElements = new Throwable().getStackTrace();
-        StackTraceElement callInfo = stackTraceElements[1];*/
-
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append(DateUtil.formatDateTime(new Date())).append(" ")
                 .append("["+ callInfo.getClassName() + "#" + callInfo.getMethodName() +"]").append("-")
@@ -157,9 +147,8 @@ public class HsJobHelper {
                 .append(appendLog!=null?appendLog:"");
         String formatAppendLog = stringBuffer.toString();
 
-        // appendlog
+        // 获取日志文件名添加日志
         String logFileName = hsJobContext.getJobLogFileName();
-
         if (logFileName!=null && logFileName.trim().length()>0) {
             HsJobFileAppender.appendLog(logFileName, formatAppendLog);
             return true;
@@ -169,10 +158,10 @@ public class HsJobHelper {
         }
     }
 
-    // ---------------------- tool for handleResult ----------------------
+    // ---------------------- 处理结果 ----------------------
 
     /**
-     * handle success
+     * 任务处理成功
      *
      * @return
      */
@@ -181,7 +170,7 @@ public class HsJobHelper {
     }
 
     /**
-     * handle success with log msg
+     * 处理成功并且有返回值
      *
      * @param handleMsg
      * @return
@@ -191,7 +180,7 @@ public class HsJobHelper {
     }
 
     /**
-     * handle fail
+     * 处理失败
      *
      * @return
      */
@@ -200,7 +189,7 @@ public class HsJobHelper {
     }
 
     /**
-     * handle fail with log msg
+     * 处理失败并且有失败消息
      *
      * @param handleMsg
      * @return
@@ -210,7 +199,7 @@ public class HsJobHelper {
     }
 
     /**
-     * handle timeout
+     * 处理超时
      *
      * @return
      */
@@ -219,7 +208,7 @@ public class HsJobHelper {
     }
 
     /**
-     * handle timeout with log msg
+     * 处理超时并且有超时消息
      *
      * @param handleMsg
      * @return
@@ -229,6 +218,7 @@ public class HsJobHelper {
     }
 
     /**
+     * 处理结果
      * @param handleCode
      *
      *      200 : success

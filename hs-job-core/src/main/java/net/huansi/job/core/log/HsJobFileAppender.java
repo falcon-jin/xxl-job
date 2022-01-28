@@ -9,14 +9,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * store trigger log in each log-file
+ * 在每个日志文件中存储触发器日志
  * @author falcon 2016-3-12 19:25:12
  */
 public class HsJobFileAppender {
 	private static Logger logger = LoggerFactory.getLogger(HsJobFileAppender.class);
 
 	/**
-	 * log base path
+	 * l日志基本路径
 	 *
 	 * strut like:
 	 * 	---/
@@ -31,18 +31,18 @@ public class HsJobFileAppender {
 	private static String logBasePath = "/data/applogs/xxl-job/jobhandler";
 	private static String glueSrcPath = logBasePath.concat("/gluesource");
 	public static void initLogPath(String logPath){
-		// init
+		// 初始化
 		if (logPath!=null && logPath.trim().length()>0) {
 			logBasePath = logPath;
 		}
-		// mk base dir
+		// 创建日志存放基本文件夹
 		File logPathDir = new File(logBasePath);
 		if (!logPathDir.exists()) {
 			logPathDir.mkdirs();
 		}
 		logBasePath = logPathDir.getPath();
 
-		// mk glue dir
+		// 创建存放glue日志文件夹
 		File glueBaseDir = new File(logPathDir, "gluesource");
 		if (!glueBaseDir.exists()) {
 			glueBaseDir.mkdirs();
@@ -57,7 +57,7 @@ public class HsJobFileAppender {
 	}
 
 	/**
-	 * log filename, like "logPath/yyyy-MM-dd/9999.log"
+	 * 日志文件名，例如 "logPath/yyyy-MM-dd/9999.log"
 	 *
 	 * @param triggerDate
 	 * @param logId
@@ -81,14 +81,14 @@ public class HsJobFileAppender {
 	}
 
 	/**
-	 * append log
+	 * 追加日志
 	 *
 	 * @param logFileName
 	 * @param appendLog
 	 */
 	public static void appendLog(String logFileName, String appendLog) {
 
-		// log file
+		// 日志文件不存在直接返回
 		if (logFileName==null || logFileName.trim().length()==0) {
 			return;
 		}
@@ -109,7 +109,7 @@ public class HsJobFileAppender {
 		}
 		appendLog += "\r\n";
 		
-		// append file content
+		// 追加文件内容
 		FileOutputStream fos = null;
 		try {
 			fos = new FileOutputStream(logFile, true);
@@ -130,14 +130,14 @@ public class HsJobFileAppender {
 	}
 
 	/**
-	 * support read log-file
+	 * s支持读取日志文件
 	 *
 	 * @param logFileName
 	 * @return log content
 	 */
 	public static LogResult readLog(String logFileName, int fromLineNum){
 
-		// valid log file
+		// 无效的日志文件
 		if (logFileName==null || logFileName.trim().length()==0) {
             return new LogResult(fromLineNum, 0, "readLog fail, logFile not found", true);
 		}
@@ -147,7 +147,7 @@ public class HsJobFileAppender {
             return new LogResult(fromLineNum, 0, "readLog fail, logFile not exists", true);
 		}
 
-		// read file
+		// 读取文件
 		StringBuffer logContentBuffer = new StringBuffer();
 		int toLineNum = 0;
 		LineNumberReader reader = null;
@@ -174,20 +174,14 @@ public class HsJobFileAppender {
 			}
 		}
 
-		// result
+		// 结果
 		LogResult logResult = new LogResult(fromLineNum, toLineNum, logContentBuffer.toString(), false);
 		return logResult;
 
-		/*
-        // it will return the number of characters actually skipped
-        reader.skip(Long.MAX_VALUE);
-        int maxLineNum = reader.getLineNumber();
-        maxLineNum++;	// 最大行号
-        */
 	}
 
 	/**
-	 * read log data
+	 * 读取日志数据
 	 * @param logFile
 	 * @return log line content
 	 */
