@@ -1,12 +1,12 @@
 ## 《分布式任务调度平台XXL-JOB》
 
-[![Actions Status](https://github.com/xuxueli/xxl-job/workflows/Java%20CI/badge.svg)](https://github.com/xuxueli/xxl-job/actions)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.xuxueli/xxl-job/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.xuxueli/xxl-job/)
-[![GitHub release](https://img.shields.io/github/release/xuxueli/xxl-job.svg)](https://github.com/xuxueli/xxl-job/releases)
-[![GitHub stars](https://img.shields.io/github/stars/xuxueli/xxl-job)](https://github.com/xuxueli/xxl-job/)
-[![Docker Status](https://img.shields.io/docker/pulls/xuxueli/xxl-job-admin)](https://hub.docker.com/r/xuxueli/xxl-job-admin/)
+[![Actions Status](https://github.com/falcon/xxl-job/workflows/Java%20CI/badge.svg)](https://github.com/falcon/xxl-job/actions)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.falcon/xxl-job/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.falcon/xxl-job/)
+[![GitHub release](https://img.shields.io/github/release/falcon/xxl-job.svg)](https://github.com/falcon/xxl-job/releases)
+[![GitHub stars](https://img.shields.io/github/stars/falcon/xxl-job)](https://github.com/falcon/xxl-job/)
+[![Docker Status](https://img.shields.io/docker/pulls/falcon/xxl-job-admin)](https://hub.docker.com/r/falcon/xxl-job-admin/)
 [![License](https://img.shields.io/badge/license-GPLv3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0.html)
-[![donate](https://img.shields.io/badge/%24-donate-ff69b4.svg?style=flat)](https://www.xuxueli.com/page/donate.html)
+[![donate](https://img.shields.io/badge/%24-donate-ff69b4.svg?style=flat)](https://www.falcon.com/page/donate.html)
 
 [TOCM]
 
@@ -18,7 +18,7 @@
 XXL-JOB是一个分布式任务调度平台，其核心设计目标是开发迅速、学习简单、轻量级、易扩展。现已开放源代码并接入多家公司线上产品线，开箱即用。
 
 ### 1.2 社区交流    
-- [社区交流](https://www.xuxueli.com/page/community.html)
+- [社区交流](https://www.falcon.com/page/community.html)
 
 ### 1.3 特性
 - 1、简单：支持通过Web页面对任务进行CRUD操作，操作简单，一分钟上手；
@@ -86,6 +86,8 @@ XXL-JOB是一个分布式任务调度平台，其核心设计目标是开发迅�
 于2019-12-10，XXL-JOB参与"[2019年度最受欢迎中国开源软件](https://www.oschina.net/project/top_cn_2019)"评比，在当时已录入的一万多个开源项目中角逐，最终排名"开发框架和基础组件类"第9名。
 
 于2020-11-16，XXL-JOB参与"[2020年度最受欢迎中国开源软件](https://www.oschina.net/project/top_cn_2020)"评比，在当时已录入的一万多个开源项目中角逐，最终排名"开发框架和基础组件类"第8名。
+
+于2021-12-06，XXL-JOB参与"[2021年度OSC中国开源项目评选](https://www.oschina.net/project/top_cn_2021) "评比，在当时已录入的一万多个开源项目中角逐，最终当选"最受欢迎项目"。
 
 > 我司大众点评目前已接入XXL-JOB，内部别名《Ferrari》（Ferrari基于XXL-JOB的V1.1版本定制而成，新接入应用推荐升级最新版本）。
 据最新统计, 自2016-01-21接入至2017-12-01期间，该系统已调度约100万次，表现优异。新接入应用推荐使用最新版本，因为经过数十个版本的更新，系统的任务模型、UI交互模型以及底层调度通讯模型都有了较大的优化和提升，核心功能更加稳定高效。
@@ -580,9 +582,38 @@ XXL-JOB是一个分布式任务调度平台，其核心设计目标是开发迅�
     - 486、IT实战联盟
     - 487、杭州尤拉夫科技有限公司
     - 488、中大检测(湖南)股份有限公司
+    - 489、江苏电老虎工业互联网股份有限公司
+    - 490、上海助通信息科技有限公司
+    - 491、北京符节科技有限公司
+    - 492、杭州英祐科技有限公司
+    - 493、江苏电老虎工业互联网股份有限公司
+    - 494、深圳市点猫科技有限公司
+    - 495、杭州天音
+    - 496、深圳市二十一科技互联网有限公司
+    - 497、海南海口翎度科技
+    - 498、北京小趣智品科技有限公司
+    - 499、广州石竹计算机软件有限公司
+    - 500、深圳市惟客数据科技有限公司
+    - 501、中国医疗器械有限公司
+    - 502、上海云谦科技有限公司
+    - 503、上海磐农信息科技有限公司
+    - 504、广州领航食品有限公司
+    - 505、青岛掌讯通区块链科技有限公司
+    - 506、北京新网数码信息技术有限公司
+    - 507、超体信息科技(深圳)有限公司
+    - 508、长沙店帮手信息科技有限公司
+    - 509、上海助弓装饰工程有限公司
+    - 510、杭州寻联网络科技有限公司
+    - 511、成都大淘客科技有限公司
+    - 512、松果出行
+    - 513、深圳市唤梦科技有限公司
+    - 514、上汽集团商用车技术中心
+    - 515、北京中航讯科技股份有限公司
+    - 516、北龙中网(北京)科技有限责任公司
+    - 517、前海超级前台(深圳)信息技术有限公司
     - ……
 
-> 更多接入的公司，欢迎在 [登记地址](https://github.com/xuxueli/xxl-job/issues/1 ) 登记，登记仅仅为了产品推广。
+> 更多接入的公司，欢迎在 [登记地址](https://github.com/falcon/xxl-job/issues/1 ) 登记，登记仅仅为了产品推广。
 
 欢迎大家的关注和使用，XXL-JOB也将拥抱变化，持续发展。
 
@@ -591,23 +622,23 @@ XXL-JOB是一个分布式任务调度平台，其核心设计目标是开发迅�
 
 #### 文档地址
 
-- [中文文档](https://www.xuxueli.com/xxl-job/)
-- [English Documentation](https://www.xuxueli.com/xxl-job/en/)
+- [中文文档](https://www.falcon.com/xxl-job/)
+- [English Documentation](https://www.falcon.com/xxl-job/en/)
 
 #### 源码仓库地址
 
 源码仓库地址 | Release Download
 --- | ---
-[https://github.com/xuxueli/xxl-job](https://github.com/xuxueli/xxl-job) | [Download](https://github.com/xuxueli/xxl-job/releases)  
-[http://gitee.com/xuxueli0323/xxl-job](http://gitee.com/xuxueli0323/xxl-job) | [Download](http://gitee.com/xuxueli0323/xxl-job/releases)
+[https://github.com/falcon/xxl-job](https://github.com/falcon/xxl-job) | [Download](https://github.com/falcon/xxl-job/releases)  
+[http://gitee.com/falcon0323/xxl-job](http://gitee.com/falcon0323/xxl-job) | [Download](http://gitee.com/falcon0323/xxl-job/releases)
 
 
 #### 中央仓库地址
 
 ```
-<!-- http://repo1.maven.org/maven2/com/xuxueli/xxl-job-core/ -->
+<!-- http://repo1.maven.org/maven2/com/falcon/xxl-job-core/ -->
 <dependency>
-    <groupId>com.xuxueli</groupId>
+    <groupId>com.falcon</groupId>
     <artifactId>xxl-job-core</artifactId>
     <version>${最新稳定版本}</version>
 </dependency>
@@ -636,7 +667,7 @@ XXL-JOB是一个分布式任务调度平台，其核心设计目标是开发迅�
 ### 2.2 编译源码
 解压源码,按照maven格式将源码导入IDE, 使用maven进行编译即可，源码结构如下：
 
-    xxl-job-admin：调度中心
+    hs-job-admin：调度中心
     xxl-job-core：公共依赖
     xxl-job-executor-samples：执行器Sample示例（选择合适的版本执行器，可直接使用，也可以参考其并将现有项目改造成执行器）
         ：xxl-job-executor-sample-springboot：Springboot版本，通过Springboot管理执行器，推荐这种方式；
@@ -645,13 +676,13 @@ XXL-JOB是一个分布式任务调度平台，其核心设计目标是开发迅�
 
 ### 2.3 配置部署“调度中心”
 
-    调度中心项目：xxl-job-admin
+    调度中心项目：hs-job-admin
     作用：统一管理任务调度平台上调度任务，负责触发调度执行，并且提供任务管理平台。
 
 #### 步骤一：调度中心配置：
 调度中心配置文件地址：
 
-    /xxl-job/xxl-job-admin/src/main/resources/application.properties
+    /xxl-job/hs-job-admin/src/main/resources/application.properties
 
 
 调度中心配置内容说明：
@@ -690,11 +721,11 @@ XXL-JOB是一个分布式任务调度平台，其核心设计目标是开发迅�
 #### 步骤二：部署项目：
 如果已经正确进行上述配置，可将项目编译打包部署。
 
-调度中心访问地址：http://localhost:8080/xxl-job-admin (该地址执行器将会使用到，作为回调地址)
+调度中心访问地址：http://localhost:8182/hs-job-admin (该地址执行器将会使用到，作为回调地址)
 
 默认登录账号 "admin/123456", 登录后运行界面如下图所示。
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_6yC0.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_6yC0.png "在这里输入图片标题")
 
 至此“调度中心”项目已经部署成功。
 
@@ -712,21 +743,21 @@ XXL-JOB是一个分布式任务调度平台，其核心设计目标是开发迅�
 - 下载镜像
 
 ```
-// Docker地址：https://hub.docker.com/r/xuxueli/xxl-job-admin/     (建议指定版本号)
-docker pull xuxueli/xxl-job-admin
+// Docker地址：https://hub.docker.com/r/falcon/hs-job-admin/     (建议指定版本号)
+docker pull falcon/hs-job-admin
 ```
 
 - 创建容器并运行
 
 ```
-docker run -p 8080:8080 -v /tmp:/data/applogs --name xxl-job-admin  -d xuxueli/xxl-job-admin:{指定版本}
+docker run -p 8080:8080 -v /tmp:/data/applogs --name xxl-job-admin  -d falcon/xxl-job-admin:{指定版本}
 
 /**
 * 如需自定义 mysql 等配置，可通过 "-e PARAMS" 指定，参数格式 PARAMS="--key=value  --key2=value2" ；
 * 配置项参考文件：/xxl-job/xxl-job-admin/src/main/resources/application.properties
 * 如需自定义 JVM内存参数 等配置，可通过 "-e JAVA_OPTS" 指定，参数格式 JAVA_OPTS="-Xmx512m" ；
 */
-docker run -e PARAMS="--spring.datasource.url=jdbc:mysql://127.0.0.1:3306/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai" -p 8080:8080 -v /tmp:/data/applogs --name xxl-job-admin  -d xuxueli/xxl-job-admin:{指定版本}
+docker run -e PARAMS="--spring.datasource.url=jdbc:mysql://127.0.0.1:3306/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai" -p 8080:8080 -v /tmp:/data/applogs --name xxl-job-admin  -d falcon/xxl-job-admin:{指定版本}
 ```
 
 
@@ -816,18 +847,18 @@ public XxlJobSpringExecutor xxlJobExecutor() {
 #### 步骤一：新建任务：
 登录调度中心，点击下图所示“新建任务”按钮，新建示例任务。然后，参考下面截图中任务的参数配置，点击保存。
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_o8HQ.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_o8HQ.png "在这里输入图片标题")
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_ZAsz.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_ZAsz.png "在这里输入图片标题")
 
 
 #### 步骤二：“GLUE模式(Java)” 任务开发：
 请点击任务右侧 “GLUE” 按钮，进入 “GLUE编辑器开发界面” ，见下图。“GLUE模式(Java)” 运行模式的任务默认已经初始化了示例任务代码，即打印Hello World。
 （ “GLUE模式(Java)” 运行模式的任务实际上是一段继承自IJobHandler的Java类代码，它在执行器项目中运行，可使用@Resource/@Autowire注入执行器里中的其他服务，详细介绍请查看第三章节）
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_Fgql.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_Fgql.png "在这里输入图片标题")
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_dNUJ.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_dNUJ.png "在这里输入图片标题")
 
 #### 步骤三：触发执行：
 请点击任务右侧 “执行” 按钮，可手动触发一次任务执行（通常情况下，通过配置Cron表达式进行任务调度触发）。
@@ -836,11 +867,11 @@ public XxlJobSpringExecutor xxlJobExecutor() {
 请点击任务右侧 “日志” 按钮，可前往任务日志界面查看任务日志。
 在任务日志界面中，可查看该任务的历史调度记录以及每一次调度的任务调度信息、执行参数和执行信息。运行中的任务点击右侧的“执行日志”按钮，可进入日志控制台查看实时执行日志。
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_inc8.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_inc8.png "在这里输入图片标题")
 
 在日志控制台，可以Rolling方式实时查看任务在执行器一侧运行输出的日志信息，实时监控任务进度；
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_eYrv.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_eYrv.png "在这里输入图片标题")
 
 ## 三、任务详解
 
@@ -912,7 +943,7 @@ Bean模式任务，支持基于类的开发方式，每个任务对应一个Java
 
 #### 步骤一：执行器项目中，开发Job类：
 
-    1、开发一个继承自"com.xxl.job.core.handler.IJobHandler"的JobHandler类，实现其中任务方法。
+    1、开发一个继承自"net.huansi.job.core.handler.IJobHandler"的JobHandler类，实现其中任务方法。
     2、手动通过如下方式注入到执行器容器。
     ```
     XxlJobExecutor.registJobHandler("demoJobHandler", new DemoJobHandler());
@@ -941,7 +972,7 @@ Bean模式任务，支持基于方法的开发方式，每个任务对应一个�
     4、任务结果：默认任务结果为 "成功" 状态，不需要主动设置；如有诉求，比如设置任务结果为失败，可以通过 "XxlJobHelper.handleFail/handleSuccess" 自主设置任务结果；
     
 ```
-// 可参考Sample示例执行器中的 "com.xxl.job.executor.service.jobhandler.SampleXxlJob" ，如下：
+// 可参考Sample示例执行器中的 "net.huansi.job.executor.service.jobhandler.SampleXxlJob" ，如下：
 @XxlJob("demoJobHandler")
 public void demoJobHandler() throws Exception {
     XxlJobHelper.log("XXL-JOB, Hello World.");
@@ -951,7 +982,7 @@ public void demoJobHandler() throws Exception {
 #### 步骤二：调度中心，新建调度任务
 参考上文“配置属性详细说明”对新建的任务进行参数配置，运行模式选中 "BEAN模式"，JobHandler属性填写任务注解“@XxlJob”中定义的值；
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_ZAsz.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_ZAsz.png "在这里输入图片标题")
 
 #### 原生内置Bean模式任务
 为方便用户参考与快速实用，示例执行器内原生提供多个Bean模式任务Handler，可以直接配置实用，如下：
@@ -973,14 +1004,14 @@ public void demoJobHandler() throws Exception {
 #### 步骤一：调度中心，新建调度任务：
 参考上文“配置属性详细说明”对新建的任务进行参数配置，运行模式选中 "GLUE模式(Java)"；
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_tJOq.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_tJOq.png "在这里输入图片标题")
 
 #### 步骤二：开发任务代码：
 选中指定任务，点击该任务右侧“GLUE”按钮，将会前往GLUE任务的Web IDE界面，在该界面支持对任务代码进行开发（也可以在IDE中开发完成后，复制粘贴到编辑中）。
 
 版本回溯功能（支持30个版本的版本回溯）：在GLUE任务的Web IDE界面，选择右上角下拉框“版本回溯”，会列出该GLUE的更新历史，选择相应版本即可显示该版本代码，保存后GLUE代码即回退到对应的历史版本；
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_dNUJ.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_dNUJ.png "在这里输入图片标题")
 
 ### 3.4 GLUE模式(Shell)
 
@@ -992,7 +1023,7 @@ public void demoJobHandler() throws Exception {
 
 该模式的任务实际上是一段 "shell" 脚本；
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_iUw0.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_iUw0.png "在这里输入图片标题")
 
 ### 3.4 GLUE模式(Python)
 
@@ -1004,7 +1035,7 @@ public void demoJobHandler() throws Exception {
 
 该模式的任务实际上是一段 "python" 脚本；
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_BPLG.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_BPLG.png "在这里输入图片标题")
 
 ### 3.5 GLUE模式(NodeJS)
 
@@ -1028,14 +1059,14 @@ public void demoJobHandler() throws Exception {
 
 ### 4.1 配置执行器
 点击进入"执行器管理"界面, 如下图:
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_Hr2T.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_Hr2T.png "在这里输入图片标题")
 
     1、"调度中心OnLine:"右侧显示在线的"调度中心"列表, 任务执行结束后, 将会以failover的模式进行回调调度中心通知执行结果, 避免回调的单点风险;
     2、"执行器列表" 中显示在线的执行器列表, 可通过"OnLine 机器"查看对应执行器的集群机器。
 
 点击按钮 "+新增执行器" 弹框如下图, 可新增执行器配置:
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_V3vF.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_V3vF.png "在这里输入图片标题")
 
 执行器属性说明
 
@@ -1063,19 +1094,19 @@ public void demoJobHandler() throws Exception {
 可对任务进行“启动”和“停止”操作。
 需要注意的是，此处的启动/停止仅针对任务的后续调度触发行为，不会影响到已经触发的调度任务，如需终止已经触发的调度任务，可查看“4.9 终止运行中的任务”
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_ZAhX.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_ZAhX.png "在这里输入图片标题")
 
 ### 4.6 手动触发一次调度
 点击“执行”按钮，可手动触发一次任务调度，不影响原有调度规则。
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_ZAhX.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_ZAhX.png "在这里输入图片标题")
 
 ### 4.7 查看调度日志
 点击“日志”按钮，可以查看任务历史调度日志。在历史调入日志界面可查看每次任务调度的调度结果、执行结果等，点击“执行日志”按钮可查看执行器完整日志。
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_ZAhX.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_ZAhX.png "在这里输入图片标题")
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_UDSo.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_UDSo.png "在这里输入图片标题")
 
     调度时间："调度中心"触发本次调度并向"执行器"发送任务执行信号的时间；
     调度结果："调度中心"触发本次调度的结果，200表示成功，500或其他表示失败；
@@ -1093,13 +1124,13 @@ public void demoJobHandler() throws Exception {
 ### 4.8 查看执行日志
 点击执行日志右侧的 “执行日志” 按钮，可跳转至执行日志界面，可以查看业务代码中打印的完整日志，如下图；
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_tvGI.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_tvGI.png "在这里输入图片标题")
 
 ### 4.9 终止运行中的任务
 仅针对执行中的任务。
 在任务日志界面，点击右侧的“终止任务”按钮，将会向本次任务对应的执行器发送任务终止请求，将会终止掉本次任务，同时会清空掉整个任务执行队列。
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_hIci.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_hIci.png "在这里输入图片标题")
 
 任务终止时通过 "interrupt" 执行线程的方式实现, 将会触发 "InterruptedException" 异常。因此如果JobHandler内部catch到了该异常并消化掉的话, 任务终止功能将不可用。
 
@@ -1122,14 +1153,14 @@ try{
 
 ### 4.10 删除执行日志
 在任务日志界面，选中执行器和任务之后，点击右侧的"删除"按钮将会出现"日志清理"弹框，弹框中支持选择不同类型的日志清理策略，选中后点击"确定"按钮即可进行日志清理操作；
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_Ypik.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_Ypik.png "在这里输入图片标题")
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_EB65.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_EB65.png "在这里输入图片标题")
 
 ### 4.11 删除任务
 点击删除按钮，可以删除对应任务。
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_Z9Qr.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_Z9Qr.png "在这里输入图片标题")
 
 ### 4.12 用户管理
 进入 "用户管理" 界面，可查看和管理用户信息；
@@ -1138,9 +1169,9 @@ try{
 - 管理员：拥有全量权限，支持在线管理用户信息，为用户分配权限，权限分配粒度为执行器；
 - 普通用户：仅拥有被分配权限的执行器，及相关任务的操作权限；
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_1001.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_1001.png "在这里输入图片标题")
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_1002.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_1002.png "在这里输入图片标题")
 
 
 ## 五、总体设计
@@ -1182,7 +1213,7 @@ XXL-JOB调度模块基于自研调度组件并支持集群部署，调度数据�
 
 #### 5.3.3 架构图
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_Qohm.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_Qohm.png "在这里输入图片标题")
 
 ### 5.4 调度模块剖析
 #### 5.4.1 quartz的不足
@@ -1225,7 +1256,7 @@ XXL-JOB的单个任务，针对多个执行器是并行运行的，针对单个�
 
 调度中心提供的"日志回调服务API服务"代码位置如下：
 ```
-xxl-job-admin#com.xxl.job.admin.controller.JobApiController.callback
+xxl-job-admin#net.huansi.job.admin.controller.JobApiController.callback
 ```
 
 “执行器”在接收到任务执行请求后，执行任务，在执行结束之后会将执行结果回调通知“调度中心”：
@@ -1236,7 +1267,7 @@ xxl-job-admin#com.xxl.job.admin.controller.JobApiController.callback
 当任务"路由策略"选择"故障转移(FAILOVER)"时，当调度中心每次发起调度请求时，会按照顺序对执行器发出心跳检测请求，第一个检测为存活状态的执行器将会被选定并发送调度请求。
 
 调度成功后，可在日志监控界面查看“调度备注”，如下；
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_jrdI.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_jrdI.png "在这里输入图片标题")
 
 “调度备注”可以看出本地调度运行轨迹，执行器的"注册方式"、"地址列表"和任务的"路由策略"。"故障转移(FAILOVER)"路由策略下，调度中心首先对第一个地址进行心跳检测，心跳失败因此自动跳过，第二个依然心跳检测失败……
 直至心跳检测第三个地址“127.0.0.1:9999”成功，选定为“目标执行器”；然后对“目标执行器”发送调度请求，调度流程结束，等待执行器回调执行结果。
@@ -1267,9 +1298,9 @@ xxl-job-admin#com.xxl.job.admin.controller.JobApiController.callback
 
 在任务日志界面，点击任务的“执行备注”的“查看”按钮，可以看到匹配子任务以及触发子任务执行的日志信息，如无信息则表示未触发子任务执行，可参考下图。
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_Wb2o.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_Wb2o.png "在这里输入图片标题")
 
-![输入图片说明](https://www.xuxueli.com/doc/static/xxl-job/images/img_jOAU.png "在这里输入图片标题")
+![输入图片说明](https://www.falcon.com/doc/static/xxl-job/images/img_jOAU.png "在这里输入图片标题")
 
 #### 5.4.11  全异步化 & 轻量级
 
@@ -1427,14 +1458,14 @@ XXL-JOB是一个跨语言的任务调度平台，主要体现在如下几个方�
 - 2、提供基于HTTP的任务Handler（Bean任务，JobHandler="httpJobHandler"）；业务方只需要提供HTTP链接等相关信息即可，不限制语言、平台；（可参考章节 “原生内置Bean模式任务” ）
 
 ### 5.16 任务失败告警
-默认提供邮件失败告警，可扩展短信、钉钉等方式。如果需要新增一种告警方式，只需要新增一个实现 "com.xxl.job.admin.core.alarm.JobAlarm" 接口的告警实现即可。可以参考默认提供邮箱告警实现 "EmailJobAlarm"。
+默认提供邮件失败告警，可扩展短信、钉钉等方式。如果需要新增一种告警方式，只需要新增一个实现 "net.huansi.job.admin.core.alarm.JobAlarm" 接口的告警实现即可。可以参考默认提供邮箱告警实现 "EmailJobAlarm"。
 
 ### 5.17 调度中心Docker镜像构建
 可以通过以下命令快速构建调度中心，并启动运行；
 ```
 mvn clean package
-docker build -t xuxueli/xxl-job-admin ./xxl-job-admin
-docker run --name xxl-job-admin -p 8080:8080 -d xuxueli/xxl-job-admin
+docker build -t falcon/xxl-job-admin ./xxl-job-admin
+docker run --name xxl-job-admin -p 8080:8080 -d falcon/xxl-job-admin
 ```
 
 ### 5.20 避免任务重复执行   
@@ -1474,8 +1505,8 @@ XXL-JOB 目标是一种跨平台、跨语言的任务调度规范和协议。
 
 ### 6.1 调度中心 RESTful API
 
-API服务位置：com.xxl.job.core.biz.AdminBiz （ com.xxl.job.admin.controller.JobApiController ）
-API服务请求参考代码：com.xxl.job.adminbiz.AdminBizTest
+API服务位置：net.huansi.job.core.biz.AdminBiz （ net.huansi.job.admin.controller.JobApiController ）
+API服务请求参考代码：net.huansi.job.adminbiz.AdminBizTest
 
 #### a、任务回调
 ```
@@ -1557,8 +1588,8 @@ Header：
 
 ### 6.2 执行器 RESTful API
 
-API服务位置：com.xxl.job.core.biz.ExecutorBiz
-API服务请求参考代码：com.xxl.job.executorbiz.ExecutorBizTest
+API服务位置：net.huansi.job.core.biz.ExecutorBiz
+API服务请求参考代码：net.huansi.job.executorbiz.ExecutorBizTest
 
 #### a、心跳检测
 ```
@@ -1619,11 +1650,11 @@ Header：
         "jobId":1,                                  // 任务ID
         "executorHandler":"demoJobHandler",         // 任务标识
         "executorParams":"demoJobHandler",          // 任务参数
-        "executorBlockStrategy":"COVER_EARLY",      // 任务阻塞策略，可选值参考 com.xxl.job.core.enums.ExecutorBlockStrategyEnum
+        "executorBlockStrategy":"COVER_EARLY",      // 任务阻塞策略，可选值参考 net.huansi.job.core.enums.ExecutorBlockStrategyEnum
         "executorTimeout":0,                        // 任务超时时间，单位秒，大于零时生效
         "logId":1,                                  // 本次调度日志ID
         "logDateTime":1586629003729,                // 本次调度日志时间
-        "glueType":"BEAN",                          // 任务模式，可选值参考 com.xxl.job.core.glue.GlueTypeEnum
+        "glueType":"BEAN",                          // 任务模式，可选值参考 net.huansi.job.core.glue.GlueTypeEnum
         "glueSource":"xxx",                         // GLUE脚本代码
         "glueUpdatetime":1586629003727,             // GLUE脚本更新时间，用于判定脚本是否变更以及是否需要刷新
         "broadcastIndex":0,                         // 分片参数：当前分片
@@ -1766,19 +1797,19 @@ Header：
     - 6.4、执行器Jobhandler注解优化,解决一处因事务代理导致的容器无法加载JobHandler的问题;
     - 6.5、远程调度优化,禁用retry策略,解决一处可能导致重复调用的问题;
 
-Tips: 历史版本(V1.3.x)目前已经Release至稳定版本, 进入维护阶段, 地址见分支 [V1.3](https://github.com/xuxueli/xxl-job/tree/v1.3) 。新特性将会在master分支持续更新。
+Tips: 历史版本(V1.3.x)目前已经Release至稳定版本, 进入维护阶段, 地址见分支 [V1.3](https://github.com/falcon/xxl-job/tree/v1.3) 。新特性将会在master分支持续更新。
 
 ### 7.7 版本 V1.4.1 新特性[2016-09-06]
 - 1、项目成功推送maven中央仓库, 中央仓库地址以及依赖如下: 
     ```
-    <!-- http://repo1.maven.org/maven2/com/xuxueli/xxl-job-core/ -->
+    <!-- http://repo1.maven.org/maven2/com/falcon/xxl-job-core/ -->
     <dependency>
-        <groupId>com.xuxueli</groupId>
+        <groupId>com.falcon</groupId>
         <artifactId>xxl-job-core</artifactId>
         <version>${最新稳定版}</version>
     </dependency>
     ```
-- 2、为适配中央仓库规则, 项目groupId从com.xxl改为com.xuxueli。
+- 2、为适配中央仓库规则, 项目groupId从com.xxl改为com.falcon。
 - 3、系统版本不在维护在项目跟pom中,各个子模块单独配置版本配置,解决子模块无法单独编译的问题;
 - 4、底层RPC通讯,传输数据的字节长度统计规则优化,可节省50%数据传输量;
 - 5、IJobHandler取消任务返回值,原通过返回值判断执行状态,逻辑改为:默认任务执行成功,仅在捕获异常时认定任务执行失败。
@@ -1897,7 +1928,7 @@ Tips: 历史版本(V1.3.x)目前已经Release至稳定版本, 进入维护阶段
 - 11、统一maven依赖版本管理；
 
 ### 7.20 版本 V1.8.2 特性[2017-09-04]
-- 1、项目主页搭建：提供中英文文档：https://www.xuxueli.com/xxl-job 
+- 1、项目主页搭建：提供中英文文档：https://www.falcon.com/xxl-job 
 - 2、JFinal执行器Sample示例项目；
 - 3、事件触发：除了"Cron方式"和"任务依赖方式"触发任务执行之外，支持基于事件的触发任务方式。调度中心提供触发任务单次执行的API服务，可根据业务事件灵活触发。
 - 4、执行器摘除：执行器销毁时，主动通知调度中心并摘除对应执行器节点，提高执行器状态感知的时效性。
@@ -1997,7 +2028,7 @@ Tips: 历史版本(V1.3.x)目前已经Release至稳定版本, 进入维护阶段
 ### 7.24 版本 V2.0.0 Release Notes[2018-11-04]
 - 1、调度中心迁移到 springboot；
 - 2、底层通讯组件迁移至 xxl-rpc；
-- 3、容器化：提供官方docker镜像，并实时更新推送dockerhub（docker pull xuxueli/xxl-job-admin），进一步实现产品开箱即用；
+- 3、容器化：提供官方docker镜像，并实时更新推送dockerhub（docker pull falcon/xxl-job-admin），进一步实现产品开箱即用；
 - 4、新增无框架执行器Sample示例项目 "xxl-job-executor-sample-frameless"。不依赖第三方框架，只需main方法即可启动运行执行器；
 - 5、命令行任务：原生提供通用命令行任务Handler（Bean任务，"CommandJobHandler"）；业务方只需要提供命令行即可；
 - 6、任务状态优化，仅运行状态"NORMAL"任务关联至quartz，降低quartz底层数据存储与调度压力；
@@ -2118,7 +2149,7 @@ public ReturnT<String> execute(String param) {
 - 5、调度中心升级springboot2.x；因此，系统要求JDK8+；
 - 6、XxlJob注解扫描方式优化，支持查找父类以及接口和基于类代理等常见情况；修复任务为空时小概率NPE问题；
 - 7、移除旧类注解JobHandler，推荐使用基于方法注解 "@XxlJob" 的方式进行任务开发；(如需保留类注解JobHandler使用方式，可以参考旧版逻辑定制开发);
-- 8、任务告警组件模块化：如果需要新增一种告警方式，只需要新增一个实现 "com.xxl.job.admin.core.alarm.JobAlarm" 接口的告警实现即可，更加灵活、方便定制；
+- 8、任务告警组件模块化：如果需要新增一种告警方式，只需要新增一个实现 "net.huansi.job.admin.core.alarm.JobAlarm" 接口的告警实现即可，更加灵活、方便定制；
 - 9、调度中心国际化完善：新增 "中文繁体" 支持。默认为 "zh_CN"/中文简体, 可选范围为 "zh_CN"/中文简体, "zh_TC"/中文繁体 and "en"/英文；
 - 10、执行器注册逻辑优化：新增配置项 ”注册地址 / xxl.job.executor.address“，优先使用该配置作为注册地址，为空时使用内嵌服务 ”IP:PORT“ 作为注册地址。从而更灵活的支持容器类型执行器动态IP和动态映射端口问题。
 - 11、默认数据库连接池调整为hikari，移除tomcat-jdbc依赖；
@@ -2234,17 +2265,17 @@ public void execute() {
 ## 八、其他
 
 ### 8.1 项目贡献
-欢迎参与项目贡献！比如提交PR修复一个bug，或者新建 [Issue](https://github.com/xuxueli/xxl-job/issues/) 讨论新特性或者变更。
+欢迎参与项目贡献！比如提交PR修复一个bug，或者新建 [Issue](https://github.com/falcon/xxl-job/issues/) 讨论新特性或者变更。
 
 ### 8.2 用户接入登记
-更多接入的公司，欢迎在 [登记地址](https://github.com/xuxueli/xxl-job/issues/1 ) 登记，登记仅仅为了产品推广。
+更多接入的公司，欢迎在 [登记地址](https://github.com/falcon/xxl-job/issues/1 ) 登记，登记仅仅为了产品推广。
 
 ### 8.3 开源协议和版权
-产品开源免费，并且将持续提供免费的社区技术支持。个人或企业内部可自由的接入和使用。
+产品开源免费，并且将持续提供免费的社区技术支持。个人或企业内部可自由的接入和使用。如有需要可邮件联系作者免费获取项目授权。
 
 - Licensed under the GNU General Public License (GPL) v3.
-- Copyright (c) 2015-present, xuxueli.
+- Copyright (c) 2015-present, falcon.
 
 ---
 ### 捐赠
-无论捐赠金额多少都足够表达您这份心意，非常感谢 ：）      [前往捐赠](https://www.xuxueli.com/page/donate.html )
+无论捐赠金额多少都足够表达您这份心意，非常感谢 ：）      [前往捐赠](https://www.falcon.com/page/donate.html )

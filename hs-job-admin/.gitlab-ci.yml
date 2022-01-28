@@ -1,0 +1,48 @@
+image: 47.110.145.204:8084/huansi/maven:3-jdk-8-docker
+
+stages:
+  - package
+  - build_push
+  - deploy_k8s
+
+variables:
+  PROFILES: $CI_COMMIT_REF_NAME
+
+# 打包
+build:
+  stage: package
+  retry: 1
+  tags:
+    - devhangzhou
+  script:
+    - bash ./docker/docker_build_tools.sh build_dev
+  only:
+    - dev
+
+
+# push到私仓
+push:
+  stage: build_push
+  retry: 1
+  tags:
+    - devhangzhou
+  script:
+    - bash ./docker/docker_build_tools.sh push
+    - echo "success"
+  only:
+    - dev
+
+
+# 测试K8S环境运行
+deploy_k8s:
+  stage: deploy_k8s
+  image: roffe/kubectl
+  before_script:
+    - bash ./docker/docker_build_tools.sh init_k8s
+  script:
+    - bash ./docker/docker_build_tools.sh deploy_k8s
+  tags:
+    - devhangzhou
+  only:
+    - dev
+
