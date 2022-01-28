@@ -5,7 +5,7 @@
     <parent>
         <groupId>net.huansi</groupId>
         <artifactId>hs-job-center</artifactId>
-        <version>2.3.1-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
     <artifactId>xxl-job-executor-samples</artifactId>
     <packaging>pom</packaging>

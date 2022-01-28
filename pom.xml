@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.huansi</groupId>
 	<artifactId>hs-job-center</artifactId>
-	<version>2.3.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>pom</packaging>
 
 	<name>${project.artifactId}</name>
@@ -14,7 +14,8 @@
 		<module>hs-job-core</module>
 		<module>hs-job-admin</module>
 		<module>hs-job-executor-samples</module>
-    </modules>
+		<module>hs-job-spring-boot-starter</module>
+	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -46,6 +47,11 @@
 	</properties>
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>net.huansi</groupId>
+				<artifactId>hs-job-core</artifactId>
+				<version>1.0</version>
+			</dependency>
 			<dependency>
 				<groupId>io.netty</groupId>
 				<artifactId>netty-all</artifactId>

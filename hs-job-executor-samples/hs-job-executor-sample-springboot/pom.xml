@@ -6,7 +6,7 @@
     <parent>
         <groupId>net.huansi</groupId>
         <artifactId>xxl-job-executor-samples</artifactId>
-        <version>2.3.1-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
     <artifactId>xxl-job-executor-sample-springboot</artifactId>
     <packaging>jar</packaging>
@@ -46,7 +46,7 @@
         <!-- hs-job-core -->
         <dependency>
             <groupId>net.huansi</groupId>
-            <artifactId>hs-job-core</artifactId>
+            <artifactId>hs-job-spring-boot-starter</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 
