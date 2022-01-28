@@ -3,16 +3,16 @@
 
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.xuxueli</groupId>
-        <artifactId>xxl-job</artifactId>
+        <groupId>net.huansi</groupId>
+        <artifactId>hs-job-center</artifactId>
         <version>2.3.1-SNAPSHOT</version>
     </parent>
     <artifactId>xxl-job-executor-samples</artifactId>
     <packaging>pom</packaging>
 
     <modules>
-        <module>xxl-job-executor-sample-frameless</module>
-        <module>xxl-job-executor-sample-springboot</module>
+        <module>hs-job-executor-sample-frameless</module>
+        <module>hs-job-executor-sample-springboot</module>
     </modules>
 
 </project>
