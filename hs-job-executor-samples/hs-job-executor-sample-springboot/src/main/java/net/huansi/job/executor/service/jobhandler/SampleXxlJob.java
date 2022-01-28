@@ -3,8 +3,10 @@ package net.huansi.job.executor.service.jobhandler;
 import net.huansi.job.core.context.HsJobHelper;
 import net.huansi.job.core.handler.HsJobHandler;
 import net.huansi.job.core.handler.annotation.HsJob;
+import net.huansi.job.executor.service.TestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedInputStream;
@@ -32,17 +34,23 @@ public class SampleXxlJob implements HsJobHandler {
     private static Logger logger = LoggerFactory.getLogger(SampleXxlJob.class);
 
 
+    @Autowired
+    private TestService testService;
+
     /**
      * 1、简单任务示例（Bean模式）
      */
     @HsJob("demoJobHandler")
     public void demoJobHandler() throws Exception {
+        System.out.println(testService.toString());
+        System.out.println(testService.test());
         HsJobHelper.log("XXL-JOB, Hello World.");
         String command = HsJobHelper.getJobParam();
         System.out.println(command);
         for (int i = 0; i < 5; i++) {
             HsJobHelper.log("beat at:" + i);
             TimeUnit.SECONDS.sleep(2);
+            System.err.println(System.currentTimeMillis());
         }
         // default success
     }

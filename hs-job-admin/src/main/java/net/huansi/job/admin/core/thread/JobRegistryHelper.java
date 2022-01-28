@@ -179,14 +179,11 @@ public class JobRegistryHelper {
 		}
 
 		// async execute
-		registryOrRemoveThreadPool.execute(new Runnable() {
-			@Override
-			public void run() {
-				int ret = XxlJobAdminConfig.getAdminConfig().getXxlJobRegistryDao().registryDelete(registryParam.getRegistryGroup(), registryParam.getRegistryKey(), registryParam.getRegistryValue());
-				if (ret > 0) {
-					// fresh
-					freshGroupRegistryInfo(registryParam);
-				}
+		registryOrRemoveThreadPool.execute(() -> {
+			int ret = XxlJobAdminConfig.getAdminConfig().getXxlJobRegistryDao().registryDelete(registryParam.getRegistryGroup(), registryParam.getRegistryKey(), registryParam.getRegistryValue());
+			if (ret > 0) {
+				// fresh
+				freshGroupRegistryInfo(registryParam);
 			}
 		});
 
@@ -194,7 +191,7 @@ public class JobRegistryHelper {
 	}
 
 	private void freshGroupRegistryInfo(RegistryParam registryParam){
-		// Under consideration, prevent affecting core tables
+		// 正在考虑中，防止影响核心表
 	}
 
 
