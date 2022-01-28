@@ -148,24 +148,21 @@ public class JobRegistryHelper {
 
 	public ReturnT<String> registry(RegistryParam registryParam) {
 
-		// valid
+		// 校验参数是否合法
 		if (!StringUtils.hasText(registryParam.getRegistryGroup())
 				|| !StringUtils.hasText(registryParam.getRegistryKey())
 				|| !StringUtils.hasText(registryParam.getRegistryValue())) {
 			return new ReturnT<String>(ReturnT.FAIL_CODE, "Illegal Argument.");
 		}
 
-		// async execute
-		registryOrRemoveThreadPool.execute(new Runnable() {
-			@Override
-			public void run() {
-				int ret = XxlJobAdminConfig.getAdminConfig().getXxlJobRegistryDao().registryUpdate(registryParam.getRegistryGroup(), registryParam.getRegistryKey(), registryParam.getRegistryValue(), new Date());
-				if (ret < 1) {
-					XxlJobAdminConfig.getAdminConfig().getXxlJobRegistryDao().registrySave(registryParam.getRegistryGroup(), registryParam.getRegistryKey(), registryParam.getRegistryValue(), new Date());
+		// 异步执行
+		registryOrRemoveThreadPool.execute(() -> {
+			int ret = XxlJobAdminConfig.getAdminConfig().getXxlJobRegistryDao().registryUpdate(registryParam.getRegistryGroup(), registryParam.getRegistryKey(), registryParam.getRegistryValue(), new Date());
+			if (ret < 1) {
+				XxlJobAdminConfig.getAdminConfig().getXxlJobRegistryDao().registrySave(registryParam.getRegistryGroup(), registryParam.getRegistryKey(), registryParam.getRegistryValue(), new Date());
 
-					// fresh
-					freshGroupRegistryInfo(registryParam);
-				}
+				// fresh
+				freshGroupRegistryInfo(registryParam);
 			}
 		});
 

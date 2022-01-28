@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
+ * 处理执行器客户端请求
  * Created by falcon on 17/5/10.
  */
 @Controller
@@ -53,14 +54,17 @@ public class JobApiController {
             return new ReturnT<String>(ReturnT.FAIL_CODE, "The access token is wrong.");
         }
 
-        // services mapping
+        // 服务映射
         if ("callback".equals(uri)) {
+            //执行定时任务结果回调
             List<HandleCallbackParam> callbackParamList = GsonTool.fromJson(data, List.class, HandleCallbackParam.class);
             return adminBiz.callback(callbackParamList);
         } else if ("registry".equals(uri)) {
+            //注册执行器
             RegistryParam registryParam = GsonTool.fromJson(data, RegistryParam.class);
             return adminBiz.registry(registryParam);
         } else if ("registryRemove".equals(uri)) {
+            //移除执行器
             RegistryParam registryParam = GsonTool.fromJson(data, RegistryParam.class);
             return adminBiz.registryRemove(registryParam);
         } else {
