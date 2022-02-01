@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
- * job group controller
+ * 任务分组控制器
  * @author falcon 2016-10-02 20:52:56
  */
 @Controller

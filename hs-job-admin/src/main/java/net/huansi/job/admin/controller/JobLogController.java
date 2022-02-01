@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * index controller
+ * 任务日志控制器
  * @author falcon 2015-12-19 16:13:16
  */
 @Controller

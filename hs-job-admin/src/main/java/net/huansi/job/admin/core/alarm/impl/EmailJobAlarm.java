@@ -19,7 +19,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * job alarm by email
+ * 任务报警--邮件
  *
  * @author falcon 2020-01-19
  */

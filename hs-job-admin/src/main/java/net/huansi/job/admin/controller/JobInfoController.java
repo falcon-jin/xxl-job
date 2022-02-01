@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
- * index controller
+ * 任务详情控制器
  * @author falcon 2015-12-19 16:13:16
  */
 @Controller

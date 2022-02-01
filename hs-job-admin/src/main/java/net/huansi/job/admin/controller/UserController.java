@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 用户认证服务
  * @author falcon 2019-05-04 16:39:50
  */
 @Controller

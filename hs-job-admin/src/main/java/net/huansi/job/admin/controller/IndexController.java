@@ -23,7 +23,7 @@ import java.util.Date;
 import java.util.Map;
 
 /**
- * index controller
+ * 首页控制器
  * @author falcon 2015-12-19 16:13:16
  */
 @Controller
