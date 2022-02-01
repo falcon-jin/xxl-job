@@ -3,6 +3,7 @@ package net.huansi.job.admin.core.scheduler;
 import net.huansi.job.admin.core.util.I18nUtil;
 
 /**
+ * 失火策略枚举
  * @author falcon 2020-10-29 21:11:23
  */
 public enum MisfireStrategyEnum {

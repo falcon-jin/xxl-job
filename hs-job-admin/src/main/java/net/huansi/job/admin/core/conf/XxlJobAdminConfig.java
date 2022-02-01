@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 import java.util.Arrays;
 
 /**
- * xxl-job config
+ * 配置类
  *
  * @author falcon 2017-04-28
  */
@@ -46,25 +46,25 @@ public class XxlJobAdminConfig implements InitializingBean, DisposableBean {
     }
 
 
-    // ---------------------- XxlJobScheduler ----------------------
+    // ---------------------- 任务调度器配置 ----------------------
 
     // conf
-    @Value("${xxl.job.i18n}")
+    @Value("${hs.job.i18n}")
     private String i18n;
 
-    @Value("${xxl.job.accessToken}")
+    @Value("${hs.job.accessToken}")
     private String accessToken;
 
     @Value("${spring.mail.from}")
     private String emailFrom;
 
-    @Value("${xxl.job.triggerpool.fast.max}")
+    @Value("${hs.job.triggerpool.fast.max}")
     private int triggerPoolFastMax;
 
-    @Value("${xxl.job.triggerpool.slow.max}")
+    @Value("${hs.job.triggerpool.slow.max}")
     private int triggerPoolSlowMax;
 
-    @Value("${xxl.job.logretentiondays}")
+    @Value("${hs.job.logretentiondays}")
     private int logretentiondays;
 
     // dao, service

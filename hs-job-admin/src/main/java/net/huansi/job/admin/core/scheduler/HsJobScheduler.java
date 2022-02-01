@@ -21,25 +21,25 @@ public class HsJobScheduler {
 
 
     public void init() throws Exception {
-        // init i18n
+        // 初始化 i18n
         initI18n();
 
-        // admin trigger pool start
+        // 初始化触发器线程池
         JobTriggerPoolHelper.toStart();
 
-        // admin registry monitor run
+        // 启动注册监听线程池
         JobRegistryHelper.getInstance().start();
 
-        // admin fail-monitor run
+        //任务执行失败监听
         JobFailMonitorHelper.getInstance().start();
 
-        // admin lose-monitor run ( depend on JobTriggerPoolHelper )
+        //任务完成监听
         JobCompleteHelper.getInstance().start();
 
-        // admin log report start
+        // 日志分析报表监听
         JobLogReportHelper.getInstance().start();
 
-        // start-schedule  ( depend on JobTriggerPoolHelper )
+        // 启动任务调度池
         JobScheduleHelper.getInstance().start();
 
         logger.info(">>>>>>>>> init xxl-job admin success.");
@@ -48,22 +48,22 @@ public class HsJobScheduler {
     
     public void destroy() throws Exception {
 
-        // stop-schedule
+        // 停止调度
         JobScheduleHelper.getInstance().toStop();
 
-        // admin log report stop
+        // 日志分析报表监听停止
         JobLogReportHelper.getInstance().toStop();
 
-        // admin lose-monitor stop
+        // 任务完成监听 停止
         JobCompleteHelper.getInstance().toStop();
 
-        // admin fail-monitor stop
+        // 任务执行失败监听 停止
         JobFailMonitorHelper.getInstance().toStop();
 
-        // admin registry stop
+        // 启动注册监听线程池 停止
         JobRegistryHelper.getInstance().toStop();
 
-        // admin trigger pool stop
+        //初始化触发器线程池 停止
         JobTriggerPoolHelper.toStop();
 
     }
@@ -79,19 +79,19 @@ public class HsJobScheduler {
     // ---------------------- executor-client ----------------------
     private static ConcurrentMap<String, ExecutorBiz> executorBizRepository = new ConcurrentHashMap<String, ExecutorBiz>();
     public static ExecutorBiz getExecutorBiz(String address) throws Exception {
-        // valid
+        // 检验配置
         if (address==null || address.trim().length()==0) {
             return null;
         }
 
-        // load-cache
+        // 加载缓存
         address = address.trim();
         ExecutorBiz executorBiz = executorBizRepository.get(address);
         if (executorBiz != null) {
             return executorBiz;
         }
 
-        // set-cache
+        // 设置缓存
         executorBiz = new ExecutorBizClient(address, XxlJobAdminConfig.getAdminConfig().getAccessToken());
 
         executorBizRepository.put(address, executorBiz);

@@ -28,7 +28,7 @@ public class EmailJobAlarm implements JobAlarm {
     private static Logger logger = LoggerFactory.getLogger(EmailJobAlarm.class);
 
     /**
-     * fail alarm
+     * 故障报警
      *
      * @param jobLog
      */
@@ -36,10 +36,10 @@ public class EmailJobAlarm implements JobAlarm {
     public boolean doAlarm(HsJobInfo info, HsJobLog jobLog){
         boolean alarmResult = true;
 
-        // send monitor email
+        // 发送监控电子邮件
         if (info!=null && info.getAlarmEmail()!=null && info.getAlarmEmail().trim().length()>0) {
 
-            // alarmContent
+            // 报警内容
             String alarmContent = "Alarm Job LogId=" + jobLog.getId();
             if (jobLog.getTriggerCode() != ReturnT.SUCCESS_CODE) {
                 alarmContent += "<br>TriggerMsg=<br>" + jobLog.getTriggerMsg();
@@ -48,8 +48,8 @@ public class EmailJobAlarm implements JobAlarm {
                 alarmContent += "<br>HandleCode=" + jobLog.getHandleMsg();
             }
 
-            // email info
-            HsJobGroup group = XxlJobAdminConfig.getAdminConfig().getXxlJobGroupDao().load(Integer.valueOf(info.getJobGroup()));
+            // 电子邮件信息
+            HsJobGroup group = XxlJobAdminConfig.getAdminConfig().getXxlJobGroupDao().load(info.getJobGroup());
             String personal = I18nUtil.getString("admin_name_full");
             String title = I18nUtil.getString("jobconf_monitor");
             String content = MessageFormat.format(loadEmailJobAlarmTemplate(),
@@ -61,7 +61,7 @@ public class EmailJobAlarm implements JobAlarm {
             Set<String> emailSet = new HashSet<String>(Arrays.asList(info.getAlarmEmail().split(",")));
             for (String email: emailSet) {
 
-                // make mail
+                // 发邮件 从配置文件读取邮件配置信息
                 try {
                     MimeMessage mimeMessage = XxlJobAdminConfig.getAdminConfig().getMailSender().createMimeMessage();
 
@@ -85,7 +85,7 @@ public class EmailJobAlarm implements JobAlarm {
     }
 
     /**
-     * load email job alarm template
+     * 加载电子邮件作业警报模板
      *
      * @return
      */

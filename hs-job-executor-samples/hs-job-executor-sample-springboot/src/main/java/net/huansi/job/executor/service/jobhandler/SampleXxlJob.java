@@ -53,6 +53,9 @@ public class SampleXxlJob implements HsJobHandler {
             System.err.println(System.currentTimeMillis());
         }
         // default success
+        //设置处理成功消息 返回给服务端
+        //HsJobHelper.handleSuccess("demoJobHandler 处理成功了");
+        HsJobHelper.handleFail("demoJobHandler 处理失败了");
     }
 
 

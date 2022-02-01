@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import java.text.MessageFormat;
 
 /**
+ * 任务执行成功
  * @author falcon 2020-10-30 20:43:10
  */
 public class HsJobCompleter {
@@ -27,7 +28,7 @@ public class HsJobCompleter {
      */
     public static int updateHandleInfoAndFinish(HsJobLog hsJobLog) {
 
-        // finish
+        // 任务结束
         finishJob(hsJobLog);
 
         // text最大64kb 避免长度过长
@@ -35,17 +36,17 @@ public class HsJobCompleter {
             hsJobLog.setHandleMsg( hsJobLog.getHandleMsg().substring(0, 15000) );
         }
 
-        // fresh handle
+        // 添加任务日志
         return XxlJobAdminConfig.getAdminConfig().getXxlJobLogDao().updateHandleInfo(hsJobLog);
     }
 
 
     /**
-     * do somethind to finish job
+     * 完成任务之后执行
      */
     private static void finishJob(HsJobLog hsJobLog){
 
-        // 1、handle success, to trigger child job
+        // 1、处理成功，触发子作业
         String triggerChildMsg = null;
         if (HsJobContext.HANDLE_CODE_SUCCESS == hsJobLog.getHandleCode()) {
             HsJobInfo hsJobInfo = XxlJobAdminConfig.getAdminConfig().getXxlJobInfoDao().loadById(hsJobLog.getJobId());
@@ -60,7 +61,7 @@ public class HsJobCompleter {
                         JobTriggerPoolHelper.trigger(childJobId, TriggerTypeEnum.PARENT, -1, null, null, null);
                         ReturnT<String> triggerChildResult = ReturnT.SUCCESS;
 
-                        // add msg
+                        // 添加信息
                         triggerChildMsg += MessageFormat.format(I18nUtil.getString("jobconf_callback_child_msg1"),
                                 (i+1),
                                 childJobIds.length,

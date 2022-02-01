@@ -10,7 +10,7 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * job trigger thread pool helper
+ * 作业触发线程池助手
  *
  * @author falcon 2018-07-03 21:08:07
  */

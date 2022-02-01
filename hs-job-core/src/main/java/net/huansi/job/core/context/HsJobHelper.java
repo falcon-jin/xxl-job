@@ -94,7 +94,7 @@ public class HsJobHelper {
         return hsJobContext.getShardTotal();
     }
 
-    // ---------------------- tool for log ----------------------
+    // ---------------------- 日志工具类 ----------------------
 
     private static Logger logger = LoggerFactory.getLogger("xxl-job logger");
 
@@ -158,7 +158,7 @@ public class HsJobHelper {
         }
     }
 
-    // ---------------------- 处理结果 ----------------------
+    // ---------------------- 处理结果 返回给服务端 ----------------------
 
     /**
      * 任务处理成功
