@@ -4,7 +4,7 @@ import net.huansi.job.admin.core.util.FtlUtil;
 import net.huansi.job.admin.core.util.I18nUtil;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.AsyncHandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
@@ -18,7 +18,7 @@ import java.util.HashMap;
  * @author falcon 2015-12-12 18:09:04
  */
 @Component
-public class CookieInterceptor implements HandlerInterceptor {
+public class CookieInterceptor implements AsyncHandlerInterceptor {
 
 	@Override
 	public void  postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,

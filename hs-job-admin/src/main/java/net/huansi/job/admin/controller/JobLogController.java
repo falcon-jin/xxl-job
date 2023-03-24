@@ -129,16 +129,20 @@ public class JobLogController {
 
         model.addAttribute("triggerCode", jobLog.getTriggerCode());
         model.addAttribute("handleCode", jobLog.getHandleCode());
-        model.addAttribute("executorAddress", jobLog.getExecutorAddress());
-        model.addAttribute("triggerTime", jobLog.getTriggerTime().getTime());
         model.addAttribute("logId", jobLog.getId());
 		return "joblog/joblog.detail";
 	}
 
 	@RequestMapping("/logDetailCat")
 	@ResponseBody
-	public ReturnT<LogResult> logDetailCat(String executorAddress, long triggerTime, long logId, int fromLineNum){
+	public ReturnT<LogResult> logDetailCat(long logId, int fromLineNum){
 		try {
+
+			// valid
+			HsJobLog jobLog = hsJobLogDao.load(logId);	// todo, need to improve performance
+			if (jobLog == null) {
+				return new ReturnT<LogResult>(ReturnT.FAIL_CODE, I18nUtil.getString("joblog_logid_unvalid"));
+			}
 			ExecutorBiz executorBiz = HsJobScheduler.getExecutorBiz(executorAddress);
 			ReturnT<LogResult> logResult = executorBiz.log(new LogParam(triggerTime, logId, fromLineNum));
 

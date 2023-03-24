@@ -283,10 +283,9 @@ public class HsJobExecutor {
         }
         return null;
     }
+
     //获取任务执行线程
     public static JobThread loadJobThread(int jobId){
-        JobThread jobThread = jobThreadRepository.get(jobId);
-        return jobThread;
+        return jobThreadRepository.get(jobId);
     }
-
 }

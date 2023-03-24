@@ -34,12 +34,14 @@ public class JobGroupController {
 	private HsJobRegistryDao hsJobRegistryDao;
 
 	@RequestMapping
+	@PermissionLimit(adminuser = true)
 	public String index(Model model) {
 		return "jobgroup/jobgroup.index";
 	}
 
 	@RequestMapping("/pageList")
 	@ResponseBody
+	@PermissionLimit(adminuser = true)
 	public Map<String, Object> pageList(HttpServletRequest request,
 										@RequestParam(required = false, defaultValue = "0") int start,
 										@RequestParam(required = false, defaultValue = "10") int length,
@@ -59,6 +61,7 @@ public class JobGroupController {
 
 	@RequestMapping("/save")
 	@ResponseBody
+	@PermissionLimit(adminuser = true)
 	public ReturnT<String> save(HsJobGroup hsJobGroup){
 
 		// valid
@@ -102,6 +105,7 @@ public class JobGroupController {
 
 	@RequestMapping("/update")
 	@ResponseBody
+	@PermissionLimit(adminuser = true)
 	public ReturnT<String> update(HsJobGroup hsJobGroup){
 		// valid
 		if (hsJobGroup.getAppname()==null || hsJobGroup.getAppname().trim().length()==0) {
@@ -170,6 +174,7 @@ public class JobGroupController {
 
 	@RequestMapping("/remove")
 	@ResponseBody
+	@PermissionLimit(adminuser = true)
 	public ReturnT<String> remove(int id){
 
 		// valid
@@ -189,6 +194,7 @@ public class JobGroupController {
 
 	@RequestMapping("/loadById")
 	@ResponseBody
+	@PermissionLimit(adminuser = true)
 	public ReturnT<HsJobGroup> loadById(int id){
 		HsJobGroup jobGroup = hsJobGroupDao.load(id);
 		return jobGroup!=null?new ReturnT<HsJobGroup>(jobGroup):new ReturnT<HsJobGroup>(ReturnT.FAIL_CODE, null);

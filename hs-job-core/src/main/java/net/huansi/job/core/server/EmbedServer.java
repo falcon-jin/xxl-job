@@ -134,6 +134,7 @@ public class EmbedServer {
         private ExecutorBiz executorBiz;
         private String accessToken;
         private ThreadPoolExecutor bizThreadPool;
+
         public EmbedHttpServerHandler(ExecutorBiz executorBiz, String accessToken, ThreadPoolExecutor bizThreadPool) {
             this.executorBiz = executorBiz;
             this.accessToken = accessToken;
@@ -271,6 +272,4 @@ public class EmbedServer {
         // 停止注册
         ExecutorRegistryThread.getInstance().toStop();
     }
-
-
 }
