@@ -2,6 +2,8 @@ package com.xxl.job.core.executor;
 
 import com.xxl.job.core.biz.AdminBiz;
 import com.xxl.job.core.biz.client.AdminBizClient;
+import com.xxl.job.core.biz.model.JobInfoParam;
+import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.handler.IJobHandler;
 import com.xxl.job.core.handler.annotation.XxlJob;
 import com.xxl.job.core.handler.impl.MethodJobHandler;
@@ -12,6 +14,7 @@ import com.xxl.job.core.thread.JobThread;
 import com.xxl.job.core.thread.TriggerCallbackThread;
 import com.xxl.job.core.util.IpUtil;
 import com.xxl.job.core.util.NetUtil;
+import com.xxl.job.core.glue.GlueTypeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,6 +30,9 @@ import java.util.concurrent.ConcurrentMap;
  */
 public class XxlJobExecutor  {
     private static final Logger logger = LoggerFactory.getLogger(XxlJobExecutor.class);
+
+    // pending auto-register job params (populated during handler registration, submitted after start)
+    private final List<JobInfoParam> pendingAutoRegisterJobs = new ArrayList<>();
 
     // ---------------------- param ----------------------
     private String adminAddresses;
@@ -86,6 +92,9 @@ public class XxlJobExecutor  {
 
         // init executor-server
         initEmbedServer(address, ip, port, appname, accessToken);
+
+        // auto-register jobs with cron configured in @XxlJob annotation
+        autoRegisterJobs();
     }
 
     public void destroy(){
@@ -177,6 +186,35 @@ public class XxlJobExecutor  {
         }
     }
 
+    // ---------------------- auto-register cron jobs ----------------------
+    private void autoRegisterJobs() {
+        if (pendingAutoRegisterJobs.isEmpty() || adminBizList == null || adminBizList.isEmpty()) {
+            return;
+        }
+        Thread thread = new Thread(() -> {
+            for (JobInfoParam param : pendingAutoRegisterJobs) {
+                for (AdminBiz adminBiz : adminBizList) {
+                    try {
+                        ReturnT<Integer> result = adminBiz.saveJob(param);
+                        if (result != null && result.getCode() == ReturnT.SUCCESS_CODE) {
+                            logger.info(">>>>>>>>>>> xxl-job auto-register cron job success, handler:{}, cron:{}, jobId:{}",
+                                    param.getExecutorHandler(), param.getScheduleConf(), result.getContent());
+                            break;
+                        } else {
+                            logger.warn(">>>>>>>>>>> xxl-job auto-register cron job failed, handler:{}, cron:{}, msg:{}",
+                                    param.getExecutorHandler(), param.getScheduleConf(), result != null ? result.getMsg() : "null");
+                        }
+                    } catch (Exception e) {
+                        logger.error(">>>>>>>>>>> xxl-job auto-register cron job error, handler:" + param.getExecutorHandler(), e);
+                    }
+                }
+            }
+        });
+        thread.setDaemon(true);
+        thread.setName("xxl-job auto-register-cron-thread");
+        thread.start();
+    }
+
 
     // ---------------------- job handler repository ----------------------
     private static ConcurrentMap<String, IJobHandler> jobHandlerRepository = new ConcurrentHashMap<String, IJobHandler>();
@@ -238,6 +276,22 @@ public class XxlJobExecutor  {
 
         // registry jobhandler
         registJobHandler(name, new MethodJobHandler(bean, executeMethod, initMethod, destroyMethod));
+
+        // collect for auto-register if cron is configured
+        if (xxlJob.cron() != null && xxlJob.cron().trim().length() > 0) {
+            JobInfoParam param = new JobInfoParam();
+            param.setAppname(appname);
+            param.setExecutorHandler(name);
+            param.setScheduleType("CRON");
+            param.setScheduleConf(xxlJob.cron().trim());
+            param.setJobDesc(xxlJob.desc() != null && xxlJob.desc().trim().length() > 0 ? xxlJob.desc().trim() : name);
+            param.setAuthor("auto");
+            param.setMisfireStrategy("DO_NOTHING");
+            param.setExecutorRouteStrategy("FIRST");
+            param.setExecutorBlockStrategy("SERIAL_EXECUTION");
+            param.setGlueType(GlueTypeEnum.BEAN.getDesc());
+            pendingAutoRegisterJobs.add(param);
+        }
 
     }
 

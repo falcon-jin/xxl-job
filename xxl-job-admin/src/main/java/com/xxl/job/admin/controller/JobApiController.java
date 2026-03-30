@@ -4,6 +4,7 @@ import com.xxl.job.admin.controller.annotation.PermissionLimit;
 import com.xxl.job.admin.core.conf.XxlJobAdminConfig;
 import com.xxl.job.core.biz.AdminBiz;
 import com.xxl.job.core.biz.model.HandleCallbackParam;
+import com.xxl.job.core.biz.model.JobInfoParam;
 import com.xxl.job.core.biz.model.RegistryParam;
 import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.util.GsonTool;
@@ -38,7 +39,7 @@ public class JobApiController {
     @RequestMapping("/{uri}")
     @ResponseBody
     @PermissionLimit(limit=false)
-    public ReturnT<String> api(HttpServletRequest request, @PathVariable("uri") String uri, @RequestBody(required = false) String data) {
+    public ReturnT api(HttpServletRequest request, @PathVariable("uri") String uri, @RequestBody(required = false) String data) {
 
         // valid
         if (!"POST".equalsIgnoreCase(request.getMethod())) {
@@ -63,6 +64,12 @@ public class JobApiController {
         } else if ("registryRemove".equals(uri)) {
             RegistryParam registryParam = GsonTool.fromJson(data, RegistryParam.class);
             return adminBiz.registryRemove(registryParam);
+        } else if ("saveJob".equals(uri)) {
+            JobInfoParam jobInfoParam = GsonTool.fromJson(data, JobInfoParam.class);
+            return adminBiz.saveJob(jobInfoParam);
+        } else if ("removeJob".equals(uri)) {
+            int id = GsonTool.fromJson(data, Integer.class);
+            return adminBiz.removeJob(id);
         } else {
             return new ReturnT<String>(ReturnT.FAIL_CODE, "invalid request, uri-mapping("+ uri +") not found.");
         }

@@ -34,8 +34,18 @@ public class SampleXxlJob {
     /**
      * 1、简单任务示例（Bean模式）
      */
-    @XxlJob("demoJobHandler")
+    @XxlJob(value ="demoJobHandler", cron = "0 0 * * * ?", desc = "我的定时任务")
     public void demoJobHandler() throws Exception {
+        XxlJobHelper.log("XXL-JOB, Hello World.");
+
+        for (int i = 0; i < 5; i++) {
+            XxlJobHelper.log("beat at:" + i);
+            TimeUnit.SECONDS.sleep(2);
+        }
+        // default success
+    }
+    @XxlJob(value ="demoJobHandlere2", cron = "0/10 * * * * ?", desc = "我的定时任务")
+    public void demoJobHandlere2() throws Exception {
         XxlJobHelper.log("XXL-JOB, Hello World.");
 
         for (int i = 0; i < 5; i++) {

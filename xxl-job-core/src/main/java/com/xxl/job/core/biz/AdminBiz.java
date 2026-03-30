@@ -1,6 +1,7 @@
 package com.xxl.job.core.biz;
 
 import com.xxl.job.core.biz.model.HandleCallbackParam;
+import com.xxl.job.core.biz.model.JobInfoParam;
 import com.xxl.job.core.biz.model.RegistryParam;
 import com.xxl.job.core.biz.model.ReturnT;
 
@@ -44,5 +45,21 @@ public interface AdminBiz {
 
     // ---------------------- biz (custome) ----------------------
     // group、job ... manage
+
+    /**
+     * save job (upsert: insert if id is null, update if id exists)
+     *
+     * @param jobInfoParam
+     * @return job id
+     */
+    public ReturnT<Integer> saveJob(JobInfoParam jobInfoParam);
+
+    /**
+     * remove job
+     *
+     * @param id
+     * @return
+     */
+    public ReturnT<String> removeJob(int id);
 
 }

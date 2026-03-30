@@ -18,6 +18,17 @@ public @interface XxlJob {
     String value();
 
     /**
+     * cron expression for auto-register to admin on startup.
+     * leave empty to skip auto-register.
+     */
+    String cron() default "";
+
+    /**
+     * job description for auto-register
+     */
+    String desc() default "";
+
+    /**
      * init handler, invoked when JobThread init
      */
     String init() default "";
