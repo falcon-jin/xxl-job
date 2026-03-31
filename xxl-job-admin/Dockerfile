@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-slim
+FROM registry.cn-hangzhou.aliyuncs.com/falcon-tools/jdk:bellsoft-8-jre
 MAINTAINER xuxueli
 
 ENV PARAMS=""
