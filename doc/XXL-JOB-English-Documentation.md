@@ -799,7 +799,7 @@ Source repository address | Release Download
 ```
 <!-- http://repo1.maven.org/maven2/com/xuxueli/xxl-job-core/ -->
 <dependency>
-    <groupId>com.xuxueli</groupId>
+    <groupId>io.github.falcon-jin</groupId>
     <artifactId>xxl-job-core</artifactId>
     <version>${version}</version>
 </dependency>
@@ -1534,7 +1534,7 @@ Tips: V1.3.x release has been published , enter the maintenance phase, branch  a
     ```
     <!-- http://repo1.maven.org/maven2/com/xuxueli/xxl-job-core/ -->
     <dependency>
-        <groupId>com.xuxueli</groupId>
+        <groupId>io.github.falcon-jin</groupId>
         <artifactId>xxl-job-core</artifactId>
         <version>${最新稳定版}</version>
     </dependency>

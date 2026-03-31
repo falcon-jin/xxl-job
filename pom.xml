@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.xuxueli</groupId>
+	<groupId>io.github.falcon-jin</groupId>
 	<artifactId>xxl-job</artifactId>
-	<version>3.3.2</version>
+	<version>3.3.2.1</version>
 	<packaging>pom</packaging>
 
 	<name>${project.artifactId}</name>
@@ -117,7 +117,7 @@
 
 			<!-- xxl-tool -->
 			<dependency>
-				<groupId>com.xuxueli</groupId>
+				<groupId>io.github.falcon-jin</groupId>
 				<artifactId>xxl-tool</artifactId>
 				<version>${xxl-tool.version}</version>
 			</dependency>
@@ -171,14 +171,14 @@
 
 			<!-- xxl-job-core -->
 			<dependency>
-				<groupId>com.xuxueli</groupId>
+				<groupId>io.github.falcon-jin</groupId>
 				<artifactId>xxl-job-core</artifactId>
 				<version>${project.parent.version}</version>
 			</dependency>
 
 			<!-- xxl-sso (xxl-tool、gson) -->
 			<dependency>
-				<groupId>com.xuxueli</groupId>
+				<groupId>io.github.falcon-jin</groupId>
 				<artifactId>xxl-sso-core</artifactId>
 				<version>${xxl-sso.version}</version>
 			</dependency>
