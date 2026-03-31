@@ -1,5 +1,6 @@
 package com.xxl.job.core.openapi;
 
+import com.xxl.job.core.openapi.model.AutoRegisterRequest;
 import com.xxl.job.core.openapi.model.CallbackRequest;
 import com.xxl.job.core.openapi.model.RegistryRequest;
 import com.xxl.tool.response.Response;
@@ -44,5 +45,14 @@ public interface AdminBiz {
 
     // ---------------------- biz (custome) ----------------------
     // group、job ... manage
+
+    /**
+     * auto register job from executor
+     * called on executor startup for every @XxlJob method that has a non-empty cron
+     *
+     * @param autoRegisterRequest
+     * @return
+     */
+    public Response<String> autoRegisterJob(AutoRegisterRequest autoRegisterRequest);
 
 }

@@ -41,6 +41,8 @@ public interface XxlJobInfoMapper {
 
 	public int findAllCount();
 
+	public XxlJobInfo loadByGroupAndHandler(@Param("jobGroup") int jobGroup, @Param("executorHandler") String executorHandler);
+
 	/**
 	 * find schedule job, limit "trigger_status = 1"
 	 *

@@ -27,4 +27,15 @@ public @interface XxlJob {
      */
     String destroy() default "";
 
+    /**
+     * cron expression for auto-registration; if non-empty the executor will
+     * automatically register this job to the admin on startup.
+     */
+    String cron() default "";
+
+    /**
+     * job description used during auto-registration
+     */
+    String desc() default "";
+
 }

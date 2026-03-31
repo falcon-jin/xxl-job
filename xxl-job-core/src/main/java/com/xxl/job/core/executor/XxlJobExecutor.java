@@ -77,6 +77,9 @@ public class XxlJobExecutor  {
     public void setLogRetentionDays(int logRetentionDays) {
         this.logRetentionDays = logRetentionDays;
     }
+    public String getAppname() {
+        return appname;
+    }
 
 
     // ---------------------- start + stop ----------------------

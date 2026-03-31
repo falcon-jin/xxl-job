@@ -228,6 +228,14 @@
 		LIMIT #{pagesize}
 	</select>
 
+	<select id="loadByGroupAndHandler" resultMap="XxlJobInfo">
+		SELECT <include refid="Base_Column_List" />
+		FROM xxl_job_info AS t
+		WHERE t.job_group = #{jobGroup}
+		  AND t.executor_handler = #{executorHandler}
+		LIMIT 1
+	</select>
+
 	<update id="scheduleUpdate" parameterType="com.xxl.job.admin.model.XxlJobInfo"  >
 		UPDATE xxl_job_info
 		SET

@@ -3,6 +3,7 @@ package com.xxl.job.admin.scheduler.openapi;
 import com.xxl.job.admin.scheduler.config.XxlJobAdminBootstrap;
 import com.xxl.job.core.constant.Const;
 import com.xxl.job.core.openapi.AdminBiz;
+import com.xxl.job.core.openapi.model.AutoRegisterRequest;
 import com.xxl.job.core.openapi.model.CallbackRequest;
 import com.xxl.job.core.openapi.model.RegistryRequest;
 import com.xxl.sso.core.annotation.XxlSso;
@@ -68,10 +69,15 @@ public class OpenApiController {
                     RegistryRequest registryParam = GsonTool.fromJson(requestBody, RegistryRequest.class);
                     return adminBiz.registryRemove(registryParam);
                     }
+                case "autoRegisterJob": {
+                    AutoRegisterRequest autoRegisterRequest = GsonTool.fromJson(requestBody, AutoRegisterRequest.class);
+                    return adminBiz.autoRegisterJob(autoRegisterRequest);
+                }
                 default:
                     return Response.ofFail("invalid request, uri-mapping("+ uri +") not found.");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return Response.ofFail("openapi invoke error: " + e.getMessage());
         }
 

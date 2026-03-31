@@ -3,6 +3,9 @@ package com.xxl.job.core.executor.impl;
 import com.xxl.job.core.executor.XxlJobExecutor;
 import com.xxl.job.core.glue.GlueFactory;
 import com.xxl.job.core.handler.annotation.XxlJob;
+import com.xxl.job.core.openapi.AdminBiz;
+import com.xxl.job.core.openapi.model.AutoRegisterRequest;
+import com.xxl.tool.core.StringTool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -61,6 +64,9 @@ public class XxlJobSpringExecutor extends XxlJobExecutor implements ApplicationC
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        // auto-register jobs that have cron configured
+        autoRegisterJobsWithCron();
     }
 
     /**
@@ -200,6 +206,70 @@ public class XxlJobSpringExecutor extends XxlJobExecutor implements ApplicationC
 
     public static ApplicationContext getApplicationContext() {
         return applicationContext;
+    }
+
+
+    // ---------------------- auto-register jobs with cron ----------------------
+
+    /**
+     * For every @XxlJob method that carries a non-empty cron expression,
+     * send an autoRegisterJob request to each admin node so the job is
+     * created (or its schedule is updated) automatically on startup.
+     */
+    private void autoRegisterJobsWithCron() {
+        List<AdminBiz> adminBizList = getAdminBizList();
+        if (adminBizList == null || adminBizList.isEmpty()) {
+            return;
+        }
+
+        // collect all @XxlJob methods that have a cron
+        List<AutoRegisterRequest> requests = new ArrayList<>();
+        String[] beanNames = applicationContext.getBeanNamesForType(Object.class, false, true);
+        for (String beanName : beanNames) {
+            Class<?> beanClass = applicationContext.getType(beanName, false);
+            if (beanClass == null) {
+                continue;
+            }
+            Map<Method, XxlJob> annotatedMethods;
+            try {
+                annotatedMethods = MethodIntrospector.selectMethods(beanClass,
+                        (MethodIntrospector.MetadataLookup<XxlJob>) method ->
+                                AnnotatedElementUtils.findMergedAnnotation(method, XxlJob.class));
+            } catch (Throwable ex) {
+                continue;
+            }
+            if (annotatedMethods == null || annotatedMethods.isEmpty()) {
+                continue;
+            }
+            for (XxlJob xxlJob : annotatedMethods.values()) {
+                if (StringTool.isBlank(xxlJob.cron())) {
+                    continue;
+                }
+                requests.add(new AutoRegisterRequest(
+                        getAppname(),
+                        xxlJob.value(),
+                        xxlJob.cron().trim(),
+                        xxlJob.desc()
+                ));
+            }
+        }
+
+        if (requests.isEmpty()) {
+            return;
+        }
+
+        // send to admin (best-effort, non-blocking)
+        for (AutoRegisterRequest req : requests) {
+            for (AdminBiz adminBiz : adminBizList) {
+                try {
+                    adminBiz.autoRegisterJob(req);
+                    logger.info(">>>>>>>>>>> xxl-job auto-register job success, handler:{}, cron:{}", req.getExecutorHandler(), req.getCron());
+                    break; // one admin success is enough
+                } catch (Exception e) {
+                    logger.warn(">>>>>>>>>>> xxl-job auto-register job fail, handler:{}, error:{}", req.getExecutorHandler(), e.getMessage());
+                }
+            }
+        }
     }
 
 }

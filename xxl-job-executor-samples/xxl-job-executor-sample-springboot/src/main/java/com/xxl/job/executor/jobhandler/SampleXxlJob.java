@@ -53,7 +53,7 @@ public class SampleXxlJob {
     /**
      * 2、分片广播任务
      */
-    @XxlJob("shardingJobHandler")
+    @XxlJob(value = "shardingJobHandler",cron = "0/10 * * * * ?",desc = "分片广播任务")
     public void shardingJobHandler() throws Exception {
 
         // 分片参数
