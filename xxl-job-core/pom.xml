@@ -41,7 +41,7 @@
 
 		<!-- ********************** tool: xxl-tool ********************** -->
 		<dependency>
-			<groupId>io.github.falcon-jin</groupId>
+			<groupId>com.xuxueli</groupId>
 			<artifactId>xxl-tool</artifactId>
 		</dependency>
 

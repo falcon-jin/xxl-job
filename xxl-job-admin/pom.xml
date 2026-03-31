@@ -77,7 +77,7 @@
 
 		<!-- xxl-sso -->
 		<dependency>
-			<groupId>io.github.falcon-jin</groupId>
+			<groupId>com.xuxueli</groupId>
 			<artifactId>xxl-sso-core</artifactId>
 		</dependency>
 

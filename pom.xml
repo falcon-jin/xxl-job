@@ -117,7 +117,7 @@
 
 			<!-- xxl-tool -->
 			<dependency>
-				<groupId>io.github.falcon-jin</groupId>
+				<groupId>com.xuxueli</groupId>
 				<artifactId>xxl-tool</artifactId>
 				<version>${xxl-tool.version}</version>
 			</dependency>
@@ -178,7 +178,7 @@
 
 			<!-- xxl-sso (xxl-tool、gson) -->
 			<dependency>
-				<groupId>io.github.falcon-jin</groupId>
+				<groupId>com.xuxueli</groupId>
 				<artifactId>xxl-sso-core</artifactId>
 				<version>${xxl-sso.version}</version>
 			</dependency>
