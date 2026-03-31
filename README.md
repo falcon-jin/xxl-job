@@ -58,6 +58,36 @@ XXL-JOB 是一个开源且免费项目，其正在进行的开发完全得益于
 - [English Documentation](https://www.xuxueli.com/xxl-job/en/)
 
 
+## Maven Central Release
+
+This repository publishes the parent POM and `xxl-job-core` to Maven Central when a Git tag named `v<version>` is pushed.
+
+- Published library artifact: `io.github.falcon-jin:xxl-job-core`
+- Release trigger: push a tag such as `v2.5.1`
+- Version rule: the tag version must match the root `pom.xml` version exactly
+- Non-library modules such as `xxl-job-admin` and `xxl-job-executor-samples` are not published
+
+### Required GitHub Secrets
+
+- `MAVEN_USERNAME`
+- `MAVEN_PASSWORD`
+- `MAVEN_GPG_PRIVATE_KEY`
+- `MAVEN_GPG_PASSPHRASE`
+
+### Required One-Time Setup
+
+- Verify namespace ownership for `io.github.falcon-jin` in Maven Central
+- Create a GPG key pair for artifact signing
+- Store the Sonatype Central credentials and GPG material in GitHub repository secrets
+
+### Release Steps
+
+1. Update the Maven version in the root and module POM files.
+2. Commit the version change.
+3. Create a Git tag such as `v2.5.1`.
+4. Push the branch and tag to GitHub.
+5. GitHub Actions validates the tag version and publishes `xxl-job-core` to Maven Central.
+
 ## Communication    
 - [社区交流](https://www.xuxueli.com/page/community.html)
 

@@ -18,7 +18,7 @@ The current CI only runs `mvn package`. It does not publish artifacts. The curre
 
 ## Goal
 
-Publish `xxl-job-core` to Maven Central automatically when a Git tag such as `v2.5.1` is pushed to GitHub.
+Publish the parent POM and `xxl-job-core` to Maven Central automatically when a Git tag such as `v2.5.1` is pushed to GitHub.
 
 ## Scope
 
@@ -51,11 +51,12 @@ This prevents accidental publication of the wrong artifact version.
 
 ## Artifact Strategy
 
-Only `xxl-job-core` should be published to Maven Central.
+The parent POM and `xxl-job-core` should be published to Maven Central.
 
 Reasoning:
 
-- `xxl-job-core` is a reusable library artifact intended for dependency consumption
+- the parent POM is required because `xxl-job-core` inherits from it
+- `xxl-job-core` is the reusable library artifact intended for dependency consumption
 - `xxl-job-admin` is an application artifact, not a general-purpose library
 - `xxl-job-executor-samples` is example content and should not be published
 
@@ -139,5 +140,6 @@ After implementation:
 
 - normal branch pushes continue to build without publishing
 - pushing a release tag triggers an authenticated, signed Maven deploy
-- `xxl-job-core` is the only published Central artifact
+- the parent POM and `xxl-job-core` are published to Central
+- `xxl-job-core` is the only reusable library artifact
 - published metadata points to `falcon-jin/xxl-job`, not the upstream project repository

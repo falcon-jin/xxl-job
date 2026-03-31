@@ -2,7 +2,7 @@
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-**Goal:** Add a tag-triggered GitHub Actions release flow that publishes `xxl-job-core` to Maven Central with correct fork metadata, signing, and version validation.
+**Goal:** Add a tag-triggered GitHub Actions release flow that publishes the parent POM and `xxl-job-core` to Maven Central with correct fork metadata, signing, and version validation.
 
 **Architecture:** Keep publishing logic centered in the root Maven POM and a single GitHub Actions workflow. Release only on pushed tags matching `v*`, validate that the tag version equals the Maven project version, and deploy with the existing `release` profile so only `xxl-job-core` is uploaded.
 
@@ -148,7 +148,7 @@ Update the workflow so it:
 - configures `server-id`, `server-username`, and `server-password`
 - imports the GPG key from secrets
 - runs the tag validation script
-- runs `mvn -B -P release deploy`
+- runs `mvn -B -P release -pl xxl-job-core -am deploy`
 
 Keep permissions minimal and cache Maven dependencies.
 
