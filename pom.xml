@@ -286,6 +286,11 @@
                         <version>${maven-gpg-plugin.version}</version>
 						<configuration>
 							<useAgent>false</useAgent>
+							<passphrase>${env.MAVEN_GPG_PASSPHRASE}</passphrase>
+							<gpgArguments>
+								<arg>--pinentry-mode</arg>
+								<arg>loopback</arg>
+							</gpgArguments>
 						</configuration>
                         <executions>
                             <execution>
@@ -304,6 +309,8 @@
 						<extensions>true</extensions>
 						<configuration>
 							<publishingServerId>central</publishingServerId>
+							<autoPublish>true</autoPublish>
+							<waitUntil>published</waitUntil>
 							<excludeArtifacts>
 								<artifact>xxl-job-admin</artifact>
 								<artifact>xxl-job-executor-samples</artifact>
