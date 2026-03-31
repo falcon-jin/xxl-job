@@ -1,5 +1,5 @@
 # base image
-FROM openjdk:21-jdk-slim
+FROM registry.cn-hangzhou.aliyuncs.com/falcon-tools/jdk:bellsoft-21-jre
 
 # maintainer
 MAINTAINER xuxueli
