@@ -44,6 +44,7 @@
 		<mybatis-spring-boot-starter.version>4.0.1</mybatis-spring-boot-starter.version>
 		<mysql-connector-j.version>9.5.0</mysql-connector-j.version>
 		<postgresql.version>42.7.7</postgresql.version>
+		<testcontainers.version>1.21.0</testcontainers.version>
 
 		<!-- net -->
 		<netty.version>4.2.9.Final</netty.version>
@@ -153,6 +154,19 @@
 				<groupId>org.postgresql</groupId>
 				<artifactId>postgresql</artifactId>
 				<version>${postgresql.version}</version>
+			</dependency>
+			<!-- testcontainers -->
+			<dependency>
+				<groupId>org.testcontainers</groupId>
+				<artifactId>junit-jupiter</artifactId>
+				<version>${testcontainers.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.testcontainers</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>${testcontainers.version}</version>
+				<scope>test</scope>
 			</dependency>
 
 			<!-- xxl-job-core -->
