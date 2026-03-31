@@ -61,7 +61,13 @@ public class AdminBizImpl implements AdminBiz {
             if (param.getAppname() != null && param.getAppname().trim().length() > 0) {
                 XxlJobGroup group = xxlJobGroupDao.findByAppname(param.getAppname().trim());
                 if (group == null) {
-                    return new ReturnT<>(ReturnT.FAIL_CODE, "jobGroup not found for appname: " + param.getAppname());
+                    // auto-create group by appname
+                    group = new XxlJobGroup();
+                    group.setAppname(param.getAppname().trim());
+                    group.setTitle(param.getAppname().trim());
+                    group.setAddressType(0);
+                    group.setUpdateTime(new Date());
+                    xxlJobGroupDao.save(group);
                 }
                 param.setJobGroup(group.getId());
             } else {
@@ -69,10 +75,10 @@ public class AdminBizImpl implements AdminBiz {
             }
         }
         if (param.getJobDesc() == null || param.getJobDesc().trim().length() == 0) {
-            return new ReturnT<>(ReturnT.FAIL_CODE, "jobDesc is required.");
+            param.setJobDesc(param.getExecutorHandler());
         }
         if (param.getAuthor() == null || param.getAuthor().trim().length() == 0) {
-            return new ReturnT<>(ReturnT.FAIL_CODE, "author is required.");
+            param.setAuthor("auto");
         }
         ScheduleTypeEnum scheduleTypeEnum = ScheduleTypeEnum.match(param.getScheduleType(), null);
         if (scheduleTypeEnum == null) {

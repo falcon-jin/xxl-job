@@ -144,3 +144,8 @@ INSERT INTO xxl_job_lock (lock_name)
 VALUES ('schedule_lock');
 
 COMMIT;
+
+
+SELECT setval(pg_get_serial_sequence('xxl_job_group', 'id'), COALESCE((SELECT MAX(id) FROM xxl_job_group), 1), true);
+SELECT setval(pg_get_serial_sequence('xxl_job_info', 'id'), COALESCE((SELECT MAX(id) FROM xxl_job_info), 1), true);
+SELECT setval(pg_get_serial_sequence('xxl_job_user', 'id'), COALESCE((SELECT MAX(id) FROM xxl_job_user), 1), true);
