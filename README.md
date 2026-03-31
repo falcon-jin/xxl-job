@@ -40,6 +40,26 @@ Now, it's already open source, and many companies use it in production environme
 XXL-JOB是一个分布式任务调度平台，其核心设计目标是开发迅速、学习简单、轻量级、易扩展。现已开放源代码并接入多家公司线上产品线，开箱即用。
 
 
+## Database Support
+`xxl-job-admin` supports MySQL and PostgreSQL at runtime.
+
+- MySQL schema: `doc/db/tables_xxl_job.sql`
+- PostgreSQL schema: `doc/db/tables_xxl_job_postgresql.sql`
+- `docker-compose.yml` keeps MySQL as the default example. To run PostgreSQL, start the `postgresql` service and switch the `xxl-job-admin` datasource `PARAMS` to the PostgreSQL example in that file.
+
+```properties
+spring.datasource.url=jdbc:mysql://127.0.0.1:3306/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+spring.datasource.username=root
+spring.datasource.password=root_pwd
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# PostgreSQL example
+# spring.datasource.url=jdbc:postgresql://127.0.0.1:5432/xxl_job
+# spring.datasource.username=postgres
+# spring.datasource.password=postgres_pwd
+# spring.datasource.driver-class-name=org.postgresql.Driver
+```
+
 ## Sponsor
 XXL-JOB is an open source and free project, with its ongoing development made possible entirely by the support of these awesome backers.
 

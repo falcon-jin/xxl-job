@@ -19,10 +19,16 @@
 		t.update_time
 	</sql>
 
-	<select id="findDead" parameterType="java.util.HashMap" resultType="java.lang.Integer" >
+	<select id="findDead" databaseId="mysql" parameterType="java.util.HashMap" resultType="java.lang.Integer" >
 		SELECT t.id
 		FROM xxl_job_registry AS t
 		WHERE t.update_time <![CDATA[ < ]]> DATE_ADD(#{nowTime},INTERVAL -#{timeout} SECOND)
+	</select>
+
+	<select id="findDead" databaseId="postgresql" parameterType="java.util.HashMap" resultType="java.lang.Integer" >
+		SELECT t.id
+		FROM xxl_job_registry AS t
+		WHERE t.update_time <![CDATA[ < ]]> (CAST(#{nowTime, jdbcType=TIMESTAMP} AS TIMESTAMP) - make_interval(secs => CAST(#{timeout, jdbcType=INTEGER} AS INTEGER)))
 	</select>
 	
 	<delete id="removeDead" parameterType="java.lang.Integer" >
@@ -33,17 +39,30 @@
 		</foreach>
 	</delete>
 
-	<select id="findAll" parameterType="java.util.HashMap" resultMap="XxlJobRegistry">
+	<select id="findAll" databaseId="mysql" parameterType="java.util.HashMap" resultMap="XxlJobRegistry">
 		SELECT <include refid="Base_Column_List" />
 		FROM xxl_job_registry AS t
 		WHERE t.update_time <![CDATA[ > ]]> DATE_ADD(#{nowTime},INTERVAL -#{timeout} SECOND)
 	</select>
 
-	<insert id="registrySaveOrUpdate" >
-		INSERT INTO xxl_job_registry( `registry_group` , `registry_key` , `registry_value`, `update_time`)
+	<select id="findAll" databaseId="postgresql" parameterType="java.util.HashMap" resultMap="XxlJobRegistry">
+		SELECT <include refid="Base_Column_List" />
+		FROM xxl_job_registry AS t
+		WHERE t.update_time <![CDATA[ > ]]> (CAST(#{nowTime, jdbcType=TIMESTAMP} AS TIMESTAMP) - make_interval(secs => CAST(#{timeout, jdbcType=INTEGER} AS INTEGER)))
+	</select>
+
+	<insert id="registrySaveOrUpdate" databaseId="mysql" >
+		INSERT INTO xxl_job_registry( registry_group , registry_key , registry_value, update_time)
 		VALUES( #{registryGroup}  , #{registryKey} , #{registryValue}, #{updateTime})
 		ON DUPLICATE KEY UPDATE
-			`update_time` = #{updateTime}
+			update_time = #{updateTime}
+	</insert>
+
+	<insert id="registrySaveOrUpdate" databaseId="postgresql" >
+		INSERT INTO xxl_job_registry( registry_group , registry_key , registry_value, update_time)
+		VALUES( #{registryGroup}  , #{registryKey} , #{registryValue}, #{updateTime})
+		ON CONFLICT (registry_group, registry_key, registry_value) DO UPDATE
+		SET update_time = EXCLUDED.update_time
 	</insert>
 
 	<!--

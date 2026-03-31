@@ -824,9 +824,13 @@ The relative path of db scripts is as follows:
 
     /xxl-job/doc/db/tables_xxl_job.sql
 
-The xxl-job-admin can be deployed as a cluster,all nodes of the cluster must connect to the same mysql instance.
+PostgreSQL schema script:
 
-If mysql instances is deployed in master-slave mode,all nodes of the cluster must connect to master instace.
+    /xxl-job/doc/db/tables_xxl_job_postgresql.sql
+
+The xxl-job-admin currently supports MySQL and PostgreSQL. In cluster mode, all nodes must connect to the same database instance.
+
+If the database is deployed in master-slave mode, all schedule-center nodes must connect to the master instance.
 
 ### 2.2 Compile
 Source code is organized by maven,unzip it and structure is as follows:
@@ -850,12 +854,18 @@ Configure file’s path of schedule center is as follows:
 
 The concrete contet describe as follows:
 
-    ### JDBC connection info of schedule center：keep Consistent with chapter 2.1
-    xxl.job.db.driverClass=com.mysql.jdbc.Driver
-    xxl.job.db.url=jdbc:mysql://127.0.0.1:3306/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
-    xxl.job.db.user=root
-    xxl.job.db.password=root_pwd
-    
+    ### Current datasource configuration
+    spring.datasource.url=jdbc:mysql://127.0.0.1:3306/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+    spring.datasource.username=root
+    spring.datasource.password=root_pwd
+    spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+    ### PostgreSQL example
+    # spring.datasource.url=jdbc:postgresql://127.0.0.1:5432/xxl_job
+    # spring.datasource.username=postgres
+    # spring.datasource.password=postgres_pwd
+    # spring.datasource.driver-class-name=org.postgresql.Driver
+
     ### Alarm mailbox
     xxl.job.mail.host=smtp.163.com
     xxl.job.mail.port=25
@@ -1666,6 +1676,7 @@ Tips: V1.3.x release has been published , enter the maintenance phase, branch  a
     mvn clean package -Dmaven.test.skip=true
     // Start XXL-JOB
     MYSQL_PATH={自定义数据库持久化目录} docker compose up -d
+    // PostgreSQL: start the `postgresql` service and switch the `xxl-job-admin` datasource PARAMS to the PostgreSQL example in docker-compose.yml.
     // Stop XXL-JOB
     docker compose down
     ```

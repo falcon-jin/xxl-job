@@ -44,12 +44,12 @@
         WHERE `trigger_day` = #{triggerDay}
     </update>-->
 
-	<insert id="saveOrUpdate" parameterType="com.xxl.job.admin.model.XxlJobLogReport" useGeneratedKeys="true" keyProperty="id" >
+	<insert id="saveOrUpdate" databaseId="mysql" parameterType="com.xxl.job.admin.model.XxlJobLogReport" useGeneratedKeys="true" keyProperty="id" keyColumn="id" >
 		INSERT INTO xxl_job_log_report (
-			`trigger_day`,
-			`running_count`,
-			`suc_count`,
-			`fail_count`
+			trigger_day,
+			running_count,
+			suc_count,
+			fail_count
 		) VALUES (
 			 #{triggerDay},
 			 #{runningCount},
@@ -57,9 +57,27 @@
 			 #{failCount}
 		 )
 		ON DUPLICATE KEY UPDATE
-			`running_count` = #{runningCount},
-			`suc_count` = #{sucCount},
-			`fail_count` = #{failCount}
+			running_count = #{runningCount},
+			suc_count = #{sucCount},
+			fail_count = #{failCount}
+	</insert>
+
+	<insert id="saveOrUpdate" databaseId="postgresql" parameterType="com.xxl.job.admin.model.XxlJobLogReport" useGeneratedKeys="true" keyProperty="id" keyColumn="id" >
+		INSERT INTO xxl_job_log_report (
+			trigger_day,
+			running_count,
+			suc_count,
+			fail_count
+		) VALUES (
+			 #{triggerDay},
+			 #{runningCount},
+			 #{sucCount},
+			 #{failCount}
+		 )
+		ON CONFLICT (trigger_day) DO UPDATE
+		SET running_count = EXCLUDED.running_count,
+			suc_count = EXCLUDED.suc_count,
+			fail_count = EXCLUDED.fail_count
 	</insert>
 
 	<select id="queryLogReport" resultMap="XxlJobLogReport">

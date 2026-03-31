@@ -9,15 +9,12 @@ import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
-@Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public abstract class AbstractPostgresIntegrationTest {
 
@@ -25,11 +22,14 @@ public abstract class AbstractPostgresIntegrationTest {
             .toAbsolutePath()
             .normalize();
 
-    @Container
     protected static final PostgreSQLContainer<?> POSTGRES = new PostgreSQLContainer<>("postgres:16-alpine")
             .withDatabaseName("xxl_job")
             .withUsername("postgres")
             .withPassword("postgres");
+
+    static {
+        POSTGRES.start();
+    }
 
     @MockitoBean
     private XxlJobAdminBootstrap xxlJobAdminBootstrap;
