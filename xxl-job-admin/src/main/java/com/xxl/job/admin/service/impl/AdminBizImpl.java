@@ -110,7 +110,7 @@ public class AdminBizImpl implements AdminBiz {
         jobInfo.setScheduleType("CRON");
         jobInfo.setScheduleConf(req.getCron());
         jobInfo.setMisfireStrategy("DO_NOTHING");
-        jobInfo.setExecutorRouteStrategy("FIRST");
+        jobInfo.setExecutorRouteStrategy("ROUND");
         jobInfo.setExecutorHandler(req.getExecutorHandler());
         jobInfo.setExecutorParam("");
         jobInfo.setExecutorBlockStrategy(ExecutorBlockStrategyEnum.SERIAL_EXECUTION.name());
