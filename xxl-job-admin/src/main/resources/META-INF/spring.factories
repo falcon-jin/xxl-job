@@ -1,0 +1,2 @@
+org.springframework.context.ApplicationListener=\
+com.xxl.job.admin.core.db.PostgresBootstrapApplicationListener
