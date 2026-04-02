@@ -287,7 +287,7 @@ public class XxlJobExecutor  {
             param.setJobDesc(xxlJob.desc() != null && xxlJob.desc().trim().length() > 0 ? xxlJob.desc().trim() : name);
             param.setAuthor("auto");
             param.setMisfireStrategy("DO_NOTHING");
-            param.setExecutorRouteStrategy("FIRST");
+            param.setExecutorRouteStrategy("ROUND");
             param.setExecutorBlockStrategy("SERIAL_EXECUTION");
             param.setGlueType(GlueTypeEnum.BEAN.getDesc());
             pendingAutoRegisterJobs.add(param);
