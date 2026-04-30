@@ -78,29 +78,29 @@ public class JobGroupController {
 			return Response.ofFail( I18nUtil.getString("jobgroup_field_appname_length") );
 		}
 		if (xxlJobGroup.getAppname().contains(">") || xxlJobGroup.getAppname().contains("<")) {
-			return Response.ofFail( "AppName"+I18nUtil.getString("system_unvalid") );
+			return Response.ofFail( "AppName"+I18nUtil.getString("system_invalid") );
 		}
 		if (StringTool.isBlank(xxlJobGroup.getTitle())) {
 			return Response.ofFail((I18nUtil.getString("system_please_input") + I18nUtil.getString("jobgroup_field_title")) );
 		}
 		if (xxlJobGroup.getTitle().contains(">") || xxlJobGroup.getTitle().contains("<")) {
-			return Response.ofFail(I18nUtil.getString("jobgroup_field_title")+I18nUtil.getString("system_unvalid") );
+			return Response.ofFail(I18nUtil.getString("jobgroup_field_title")+I18nUtil.getString("system_invalid") );
 		}
 		if (xxlJobGroup.getAddressType()!=0) {
 			if (StringTool.isBlank(xxlJobGroup.getAddressList())) {
 				return Response.ofFail( I18nUtil.getString("jobgroup_field_addressType_limit") );
 			}
 			if (xxlJobGroup.getAddressList().contains(">") || xxlJobGroup.getAddressList().contains("<")) {
-				return Response.ofFail(I18nUtil.getString("jobgroup_field_registryList")+I18nUtil.getString("system_unvalid") );
+				return Response.ofFail(I18nUtil.getString("jobgroup_field_registryList")+I18nUtil.getString("system_invalid") );
 			}
 
 			String[] addresss = xxlJobGroup.getAddressList().split(",");
 			for (String item: addresss) {
 				if (StringTool.isBlank(item)) {
-					return Response.ofFail( I18nUtil.getString("jobgroup_field_registryList_unvalid") );
+					return Response.ofFail( I18nUtil.getString("jobgroup_field_registryList_invalid") );
 				}
                 if (!(HttpTool.isHttp(item) || HttpTool.isHttps(item))) {
-                    return Response.ofFail( I18nUtil.getString("jobgroup_field_registryList_unvalid")+"[2]" );
+                    return Response.ofFail( I18nUtil.getString("jobgroup_field_registryList_invalid")+"[2]" );
                 }
 			}
 		}
@@ -143,10 +143,10 @@ public class JobGroupController {
 			String[] addresss = xxlJobGroup.getAddressList().split(",");
 			for (String item: addresss) {
 				if (StringTool.isBlank(item)) {
-					return Response.ofFail(I18nUtil.getString("jobgroup_field_registryList_unvalid") );
+					return Response.ofFail(I18nUtil.getString("jobgroup_field_registryList_invalid") );
 				}
                 if (!(HttpTool.isHttp(item) || HttpTool.isHttps(item))) {
-                    return Response.ofFail( I18nUtil.getString("jobgroup_field_registryList_unvalid")+"[2]" );
+                    return Response.ofFail( I18nUtil.getString("jobgroup_field_registryList_invalid")+"[2]" );
                 }
 			}
 		}

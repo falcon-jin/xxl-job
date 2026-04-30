@@ -87,7 +87,7 @@ public class JobUserController {
         }
         xxlJobUser.setUsername(xxlJobUser.getUsername().trim());
         if (!(xxlJobUser.getUsername().length()>=4 && xxlJobUser.getUsername().length()<=20)) {
-            return Response.ofFail(I18nUtil.getString("system_lengh_limit")+"[4-20]" );
+            return Response.ofFail(I18nUtil.getString("system_length_limit")+"[4-20]" );
         }
         // valid password
         if (StringTool.isBlank(xxlJobUser.getPassword())) {
@@ -95,7 +95,7 @@ public class JobUserController {
         }
         xxlJobUser.setPassword(xxlJobUser.getPassword().trim());
         if (!(xxlJobUser.getPassword().length()>=4 && xxlJobUser.getPassword().length()<=20)) {
-            return Response.ofFail(I18nUtil.getString("system_lengh_limit")+"[4-20]" );
+            return Response.ofFail(I18nUtil.getString("system_length_limit")+"[4-20]" );
         }
         // md5 password
         String passwordHash = Sha256Tool.sha256(xxlJobUser.getPassword());
@@ -127,7 +127,7 @@ public class JobUserController {
         if (StringTool.isNotBlank(xxlJobUser.getPassword())) {
             xxlJobUser.setPassword(xxlJobUser.getPassword().trim());
             if (!(xxlJobUser.getPassword().length()>=4 && xxlJobUser.getPassword().length()<=20)) {
-                return Response.ofFail(I18nUtil.getString("system_lengh_limit")+"[4-20]" );
+                return Response.ofFail(I18nUtil.getString("system_length_limit")+"[4-20]" );
             }
             // md5 password
             String passwordHash = Sha256Tool.sha256(xxlJobUser.getPassword());
@@ -176,7 +176,7 @@ public class JobUserController {
         }
         password = password.trim();
         if (!(password.length()>=4 && password.length()<=20)) {
-            return Response.ofFail(I18nUtil.getString("system_lengh_limit")+"[4-20]" );
+            return Response.ofFail(I18nUtil.getString("system_length_limit")+"[4-20]" );
         }
 
         // md5 password
@@ -187,7 +187,7 @@ public class JobUserController {
         Response<LoginInfo> loginInfoResponse = XxlSsoHelper.loginCheckWithAttr(request);
         XxlJobUser existUser = xxlJobUserMapper.loadByUserName(loginInfoResponse.getData().getUserName());
         if (!oldPasswordHash.equals(existUser.getPassword())) {
-            return Response.ofFail(I18nUtil.getString("change_pwd_field_oldpwd") + I18nUtil.getString("system_unvalid"));
+            return Response.ofFail(I18nUtil.getString("change_pwd_field_oldpwd") + I18nUtil.getString("system_invalid"));
         }
 
         // write new

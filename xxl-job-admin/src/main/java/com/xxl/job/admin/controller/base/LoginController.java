@@ -59,13 +59,13 @@ public class LoginController {
 		// valid user、status
 		XxlJobUser xxlJobUser = xxlJobUserMapper.loadByUserName(userName);
 		if (xxlJobUser == null) {
-			return Response.ofFail( I18nUtil.getString("login_param_unvalid") );
+			return Response.ofFail( I18nUtil.getString("login_param_invalid") );
 		}
 
 		// valid passowrd
 		String passwordHash = Sha256Tool.sha256(password);
 		if (!passwordHash.equals(xxlJobUser.getPassword())) {
-			return Response.ofFail( I18nUtil.getString("login_param_unvalid") );
+			return Response.ofFail( I18nUtil.getString("login_param_invalid") );
 		}
 
 		// xxl-sso, do login
@@ -100,7 +100,7 @@ public class LoginController {
 		}
 		password = password.trim();
 		if (!(password.length()>=4 && password.length()<=20)) {
-			return Response.ofFail(I18nUtil.getString("system_lengh_limit")+"[4-20]" );
+			return Response.ofFail(I18nUtil.getString("system_length_limit")+"[4-20]" );
 		}
 
 		// md5 password
@@ -111,7 +111,7 @@ public class LoginController {
 		Response<LoginInfo> loginInfoResponse = XxlSsoHelper.loginCheckWithAttr(request);
 		XxlJobUser existUser = xxlJobUserMapper.loadByUserName(loginInfoResponse.getData().getUserName());
 		if (!oldPasswordHash.equals(existUser.getPassword())) {
-			return Response.ofFail(I18nUtil.getString("change_pwd_field_oldpwd") + I18nUtil.getString("system_unvalid"));
+			return Response.ofFail(I18nUtil.getString("change_pwd_field_oldpwd") + I18nUtil.getString("system_invalid"));
 		}
 
 		// write new
