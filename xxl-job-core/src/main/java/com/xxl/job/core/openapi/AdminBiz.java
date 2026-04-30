@@ -43,8 +43,21 @@ public interface AdminBiz {
     public Response<String> registryRemove(RegistryRequest registryRequest);
 
 
-    // ---------------------- biz (custome) ----------------------
-    // group、job ... manage
+    // ---------------------- job operate ----------------------
+
+    // jobAdd
+
+    // jobUpdate
+
+    // jobDelete
+
+    // jobQuery
+
+    // jobStart
+
+    // jobStop
+
+    // jobTrigger
 
     /**
      * auto register job from executor

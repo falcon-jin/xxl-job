@@ -40,7 +40,7 @@ public class JobThread extends Thread{
 	public JobThread(int jobId, IJobHandler handler) {
 		this.jobId = jobId;
 		this.handler = handler;
-		this.triggerQueue = new LinkedBlockingQueue<TriggerRequest>();
+		this.triggerQueue = new LinkedBlockingQueue<>();
 		//this.triggerLogIdSet = Collections.synchronizedSet(new HashSet<Long>());
 		this.triggerLogIdSet = ConcurrentHashMap.newKeySet();
 
@@ -143,6 +143,7 @@ public class JobThread extends Thread{
 								}
 							});
 							futureThread = new Thread(futureTask);
+							futureThread.setName("xxl-job, JobThread-future-"+jobId+"-"+System.currentTimeMillis());
 							futureThread.start();
 
 							Boolean tempResult = futureTask.get(triggerParam.getExecutorTimeout(), TimeUnit.SECONDS);
